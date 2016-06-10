@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html dir="ltr" lang="nl">
+<head>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="author" content="Ben Stuijts 2016" />
+    <title>Admin Home | DarkAge</title>
+    
+    <link rel="stylesheet" href="https://bootswatch.com/cosmo/bootstrap.min.css" >
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" 
+        integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
+    
+    <!-- Latest compiled and minified JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" 
+        integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
+    
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet" 
+    integrity="sha384-T8Gy5hrqNKT+hzMclPo118YTQO6cYprQmhrYwIiQ/3axmI1hQomh7Ud2hPOy8SP1" crossorigin="anonymous">
+    
+    <link rel="stylesheet" href="./css/admin/admin.css">
+</head>
+<body>
+    <nav class="navbar navbar-inverse primary-color-bg">
+        <div class="container-fluid">
+            <ul class="nav navbar-nav">
+                <li>
+                    <a href="">link</a>
+                </li>
+            </ul>
+            <ul class="nav navbar-nav navbar-right">
+                <li>
+                    <a class="text-color-light-text" href="logout"><span class="glyphicon glyphicon-road" aria-hidden="true"></span> Logout</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-9">
+            <textarea id="ckeditor" class="form-control" rows="3"></textarea>
+        </div>
+        <div class="col-md-3">images</div>
+    </div>
+    
+    <div class="row">
+        <form>
+        <div class="form-group">
+            <label for="header">Header (h1)</label>
+            <input type="text" class="form-control" id="header" placeholder="">
+        </div>
+    </form>
+    </div>
+    
+</div>
+    
+    
+    
+<script src="//cdn.ckeditor.com/4.5.8/full/ckeditor.js"></script>
+<script>
+    // Replace the <textarea id="editor1"> with a CKEditor
+    // instance, using default configuration.
+    CKEDITOR.replace( 'ckeditor' );
+</script>
+</body>
+</html>
