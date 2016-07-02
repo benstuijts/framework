@@ -1,4 +1,9 @@
 /* COLOR SETTINGS */
+
+body {
+  background: #eee;
+}
+
 .primary-color-bg {    background: #564138;    }
 .primary-color-text {    color: #564138;    }
 .secundary-color-bg {    background: #2E86AB;}
@@ -46,3 +51,48 @@
   border-top-right-radius: 0;
 }
 /* END LOGIN PAGE */
+
+/* BOOTSTRAP ADJUSTMENTS */
+.input-group-addon {
+    min-width:300px;
+    text-align:left;
+    text-transform: uppercase;
+}
+.image-thumbnail {
+  display: inline-block;
+  position: relative;
+  max-width: 100px;
+}
+.close {
+  position: absolute;
+  right: 5px;
+  top:5px;
+}
+/* ENDBOOTSTRAP ADJUSTMENTS */
+
+
+/* DASHBOARD PAGE */
+
+/* file upload controls */
+.btn-file {
+    position: relative;
+    overflow: hidden;
+}
+.btn-file input[type=file] {
+    position: absolute;
+    top: 0;
+    right: 0;
+    min-width: 100%;
+    min-height: 100%;
+    font-size: 100px;
+    text-align: right;
+    filter: alpha(opacity=0);
+    opacity: 0;
+    outline: none;
+    background: white;
+    cursor: inherit;
+    display: block;
+}
+/* end file upload controls */
+
+/* END DASHBOARD PAGE */

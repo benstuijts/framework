@@ -1,3 +1,37 @@
 uploadming images => uploadcare.com
 
 https://www.youtube.com/watch?v=u77Y_MiB2X0&index=1&list=PLfdtiltiRHWGuyxKZoNMDeR-X7-aMYkZu
+
+-------------------------------------------
+WYSIWYG - tool
+-------------------------------------------
+http://ckeditor.com/
+
+basic: <script src="//cdn.ckeditor.com/4.5.9/basic/ckeditor.js"></script>
+standaard: <script src="//cdn.ckeditor.com/4.5.9/standard/ckeditor.js"></script>
+full: <script src="//cdn.ckeditor.com/4.5.9/full/ckeditor.js"></script>
+
+
+
+-------------------------------------------
+Mongo DB Role Based Access Control
+-------------------------------------------
+userAdminAnyDatabase
+    user: "TA",     pwd: "...Dumb..."
+db: framework
+    user: "websiteAdmin",   pwd: "F2016",   readWrite
+    user: "website"     ,   pwd: "F2016",   read
+    
+    collection "users"
+        1.  Ben Stuijts     b.stuijts@upcmail.nl    admin   true    1
+        2.  Pepijn Stuijts  p.stuijts@upcmail.nl    admin   false   1
+
+Start Instance:
+mongod --auth --port 27017
+
+Connect to Instance with user
+mongo --port 27017 -u "myUserAdmin" -p "abc123" --authenticationDatabase "framework"
+
+-------------------------------------------
+Mongo Mongo-express
+-------------------------------------------
