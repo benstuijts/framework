@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="nl">
+
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="<%= description %>">
+    <meta name="author" content="<%= author %>">
+
+    <title><%= title %></title>
+
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" 
+        integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
+
+    <script   src="https://code.jquery.com/jquery-2.2.4.min.js"   integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44="   crossorigin="anonymous"></script>    
+
+    <!-- Latest compiled and minified JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" 
+        integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
+    
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet" 
+    integrity="sha384-T8Gy5hrqNKT+hzMclPo118YTQO6cYprQmhrYwIiQ/3axmI1hQomh7Ud2hPOy8SP1" crossorigin="anonymous">
+
+    <!-- Custom CSS -->
+    <link href="../css/<%= css %>" rel="stylesheet">
+
+    <!-- Custom Fonts -->
+    <link href="https://fonts.googleapis.com/css?family=Lato:300,400,700,300italic,400italic,700italic" rel="stylesheet" type="text/css">
+
+</head>
+
+<body>
+<div class="container">
+    <div class="row">
+        <div class="">
+            <h1>Setup Wizard Landingspage</h1>
+            
+            <form class="form">
+                
+                <h2>&#10112; Technical Data</h2>
+                
+                <% inputField("text", "url", "website url") %>  
+                <% inputField("text", "head.title", "titel van de website (55 characters)") %>
+                <span id="helpBlock" class="help-block">
+                    Optimal Format<br>Primary Keyword - Secondary Keyword | Brand Name
+                </span>
+                <% inputField("text", "head.description", "omschrijving van de website (head)") %>
+                <span id="helpBlock" class="help-block">
+                    Optimal Length for Search Engines: Roughly 155 Characters
+                </span>
+                <% inputField("text", "head.keywords", "keywords (gescheiden door komma)") %>
+                <% inputField("text", "head.author", "auteur", "Digital Markets") %>
+                <label>Google Analetics Code</label>
+                <textarea class="form-control" name="google_analytics" rows="5" placeholder="Google Analetics Code"></textarea>
+
+                <h2>&#10113; Above the fold</h2>
+                <label>menu (JSON format)</label>
+                <textarea class="form-control" name="menu" rows="5" placeholder="menu"></textarea>
+                
+                <span id="helpBlock" class="help-block">
+                    Bijvoorbeeld<br>
+                    [<br>
+                    { name: "about", url: "/about"},<br> 
+                    { name: "contact", url: "/contact"}<br>
+                    { name: "info item 1", url: "/items/item1"}<br>
+                    { name: "main|dropdown" },<br>
+                    { name: "main.item1", url: ""},<br>
+                    { name: "main.item2", url: ""}<br>
+                    ]<br>
+                </span>
+                
+                <% inputField("text", "picture", "main picture (full url)") %> 
+                <% inputField("text", "title", "titel (h1)") %>
+                <% inputField("text", "subtitle", "subtitel (h2)") %>
+                <% inputField("text", "call_to_action_button_text", "Call to Action Button tekst") %>
+                <% inputField("text", "call_to_action_button_url", "Call to Action Button link (naar affiliate pagina)") %>
+                <% inputField("text", "twitter", "Twitter Account") %>
+                <% inputField("text", "facebook", "Facebook pagina") %>
+                <% inputField("text", "google", "Google Plus pagina") %>
+                
+                <h2>&#10114; What do we do?</h2>
+                
+                <input type="submit" class="btn btn-success" value="Website lanceren">
+                
+            </form>
+        </div>
+    </div>
+</div>
+
+<% include ../partials/scripts %> 
+</body>
+</html>
+
+<% function inputField(type, name, label, value) { 
+    if(!value) value="";
+    %>
+    <div class="form-group">
+        <label for="<%= label %>"><%= label %></label>
+        <input type="<%= type %>" class="form-control" name="<%= name %>" placeholder="<%= label %>" value="<%= value %>">
+    </div>
+<% } %>
