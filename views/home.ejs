@@ -2,9 +2,28 @@
 
 <body>
 
+<form method="post" action="/admin/update">
+    
+<button class="fixed-button btn btn-lg">Save</button>
+
+
+
+
 <% include partials/navigation %>
 <% include partials/header %>
-<% include partials/what-do-we-do %>
+
+
+
+
+
+
+
+<% load('whatdowedo') %>
+<% load('whatclientssay') %>
+<% load('story') %>
+<% load('services') %>
+
+<% include admin/formConfig %>
 
 <div class="container">
     <div class="row">
@@ -48,8 +67,21 @@
 </div>
 
 
-<% include partials/services %>
+
 <% include partials/contact %>
+
+
+</form>
+
 <% include partials/scripts %>    
 </body>
 </html>
+
+<% function load(component) {
+    if(locals[component].active == true) {
+        component = 'partials/' + component;
+        %>
+        <%- include(component) %>
+        <%
+    }    
+}%>

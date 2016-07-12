@@ -1,0 +1,30 @@
+<section id="what-do-clients-say-about-<%= meta.name %>">
+    <div class="container">
+        <div class="col-lg-12 text-center">
+            <h2 class="section-heading">Onze klanten over <strong><%= meta.name %></strong></h2>
+        </div>
+        <hr class="intro-divider">
+        
+           <% if(whatclientssay.blockquotes) {
+               for(i in whatclientssay.blockquotes) {
+                   var quote = whatclientssay.blockquotes[i];
+                   %>
+                    <div class="col-lg-6 col-sm-12">
+                       <blockquote>
+                            <p><%= quote.body %></p>
+                            <footer><%= quote.author %>
+                            <% if(quote.href !== "") { %>
+                                @ <a href="<%= quote.href %>" target="_blank"><%= quote.anchortext %></a>
+                            <% } %>
+                            <% if(quote.cite !== "") { %>
+                                in <cite title="Source Title"><%= quote.cite %></cite>
+                            <% } %>
+                           </footer>
+                       </blockquote>
+                    </div>
+                   <%
+               }
+           } %>
+          
+    </div>
+</section>

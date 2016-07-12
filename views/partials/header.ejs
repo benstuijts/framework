@@ -1,29 +1,71 @@
+<input type="hidden" value="<%= header.image %>" id="header.image">
     <!-- Header -->
     <a name="about"></a>
-    <div class="intro-header">
+    <div class="intro-header" id="intro-header">
         <div class="container">
-
             <div class="row">
                 <div class="col-lg-12">
                     <div class="intro-message">
-                        <h1><%= h1 %></h1>
-                        <h3><%= h2 %></h3>
-                        <hr class="intro-divider">
                         
-                        <a href="" class="btn btn-default btn-lg call-to-action">Call to Action</a>
+                        <h1 class="editable">
+                            <input class="transparent text-center" name="h1" type="text" value="<%= h1 %>">
+                            <i class="edit fa fa-pencil" aria-hidden="true"></i>
+                        </h1>
+                        
+                        
+                        <h3 class="editable">
+                            <input class="transparent text-center" name="h2" type="text" value="<%= h2 %>">
+                            <i class="edit fa fa-pencil" aria-hidden="true"></i>
+                        </h3>
+                        
+                        <hr class="intro-divider">
+ 
+                        <a href="<%= header.callToActionButtonHref %>" class="btn btn-default btn-lg call-to-action">
+                            <%= header.callToActionButtonText %>
+                        </a>
+                        
+                        <div href="<%= header.callToActionButtonHref %>" class="btn btn-default btn-lg call-to-action">
+                            <div class="editable">
+                                <input class="transparent text-center" name="header.callToActionButtonText" type="text" value="<%= header.callToActionButtonText%>">
+                                <i class="edit fa fa-pencil" aria-hidden="true"></i>
+                            </div>
+                        </div>
+                        
                         
                         <hr class="intro-divider">
                         <ul class="list-inline intro-social-buttons">
                             <li>
-                                <a href="https://twitter.com/SBootstrap" class="btn btn-info btn-sm"><i class="fa fa-twitter fa-fw"></i> <span class="network-name">Twitter</span></a>
+                                <a href="<%= meta.twitter %>" class="btn btn-info btn-sm"><i class="fa fa-twitter fa-fw"></i> <span class="network-name">Twitter</span></a>
                             </li>
                             <li>
-                                <a href="https://github.com/IronSummitMedia/startbootstrap" class="btn btn-primary btn-sm"><i class="fa fa-facebook fa-fw"></i> <span class="network-name">Facebook</span></a>
+                                <a href="<%= meta.facebook %>" class="btn btn-primary btn-sm"><i class="fa fa-facebook fa-fw"></i> <span class="network-name">Facebook</span></a>
                             </li>
                             <li>
-                                <a href="#" class="btn btn-danger btn-sm"><i class="fa fa-google-plus fa-fw"></i> <span class="network-name">Google</span></a>
+                                <a href="<%= meta.google %>" class="btn btn-danger btn-sm"><i class="fa fa-google-plus fa-fw"></i> <span class="network-name">Google</span></a>
                             </li>
                         </ul>
+                        
+                        <ul class="list-inline intro-social-buttons">
+                            <li>
+                                <div class="editable">
+                                    <input class="btn btn-info btn-sm text-center" name="meta.twitter" type="text" value="<%= meta.twitter %>">   
+                                    <i class="edit fa fa-pencil" aria-hidden="true"></i>
+                                </div>
+                            </li>
+                            <li>
+                                <div class="editable">
+                                    <input class="btn btn-primary btn-sm text-center" name="meta.facebook" type="text" value="<%= meta.facebook %>">   
+                                    <i class="edit fa fa-pencil" aria-hidden="true"></i>
+                                </div>
+                            </li>
+                            <li>
+                                <div class="editable">
+                                    <input class="btn btn-danger btn-sm text-center" name="meta.google" type="text" value="<%= meta.google %>">   
+                                    <i class="edit fa fa-pencil" aria-hidden="true"></i>
+                                </div>
+                            </li>
+                        </ul>
+                        
                     </div>
                 </div>
             </div>

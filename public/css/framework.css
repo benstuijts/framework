@@ -28,11 +28,42 @@ h6 {
     font-family: "Lato","Helvetica Neue",Helvetica,Arial,sans-serif;
     font-weight: 700;
 }
-
+section {
+    padding-top: 48px;
+    padding-bottom: 48px;
+    
+}
 .topnav {
     font-size: 14px; 
 }
+.editable {
+    position: relative;
+}
+.transparent:focus {
+    background-color: rgba(200,200,200,.4);
+    color: black;
+}
+.editable:hover .edit {
+    display: block;
+}
+.edit {
+    position: absolute;
+    right: 0px;
+    bottom: 10px;
+    font-size: 30px;
+    display: none;
+}
+.transparent {
+    background-color: transparent;
+    border: 0px;
+    width: 100%;
+}
 
+.fixed-button {
+    position: fixed;
+    bottom: 32px;
+    right: 32px;
+}
 .lead {
     font-size: 18px;
     font-weight: 400;
@@ -43,7 +74,9 @@ h6 {
     padding-bottom: 50px;
     text-align: center;
     color: #f8f8f8;
-    background: url('https://ucarecdn.com/32620a4e-45d6-46fd-af5d-bcd5cf05b5a7/') no-repeat center center;
+    /*
+    background: url('https://ucarecdn.com/32620a4e-45d6-46fd-af5d-bcd5cf05b5a7/-/progressive/yes/') no-repeat center center;
+    */
     background-size: cover;
 }
 
@@ -181,7 +214,7 @@ p.copyright {
 
 section#contact{
     background-color:#222;
-    background-image:url('https://ucarecdn.com/4467d9e4-223a-4bae-829b-3f36011f8276/');
+    //background-image:url('https://ucarecdn.com/4467d9e4-223a-4bae-829b-3f36011f8276/');
     background-position:center;background-repeat:no-repeat;
     
     padding-bottom: 40px;

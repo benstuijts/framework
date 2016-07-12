@@ -1,5 +1,153 @@
-<script src="js/jquery.min.js"></script>
+
+
 <script>
+    
+    var data = JSON.parse('<%- data %>');
+    
+    console.log(data.meta.author);
+    
+    window.onload = function() {
+        var im = document.getElementById("header.image").value;
+        var im_contact = document.getElementById("contact.image").value;
+        
+        
+        
+        document.getElementById("intro-header").style.background= "url('"+im+"') no-repeat center center";
+        document.getElementById("contact").style.background= "url('"+im_contact+"') no-repeat center center";
+
+        //document.getElementById("console").innerHTML = createFormFromJSON(data);
+
+    };
+    
+    function loop(obj, html) {
+        for(var key in obj) {
+            
+            transform(obj, key, html);
+            
+            /*
+            switch(typeof obj[key]) {
+                case 'string':
+                    html += createFormGroup('text', key, key, obj[key]);
+                    break;
+                case 'number':
+                    html += createFormGroup('number', key, key, obj[key]);
+                    break;   
+                case 'object':
+                    console.log('object found');
+                    newHtml += '<h3>' + key + '</h3>';
+                    console.log(newHtml);
+                    loop(obj[key], newHtml);
+                    break;
+            }
+            */
+        }
+        return html;
+    }
+    
+    
+    
+    
+    
+    function createFormFromJSON(jsonObject) {
+        
+        var html = '<form class="form"><h2>Edit config</h2>';
+        
+        for(var key in jsonObject) {
+            //console.log(key);
+            html += "<h2>" + key + "</h2>";
+            
+            //console.log(typeof jsonObject[key]);
+            
+            if(typeof jsonObject[key] == 'object' && Array.isArray(jsonObject[key])) {
+                html += 'ARRAY FOUND';
+                for(var i=0; i<jsonObject[key].length; i++) {
+                    html += '<strong>element ' + i + '</strong>';
+                    switch(typeof jsonObject[key][i]) {
+                        case 'object':
+                            for(keyArray in jsonObject[key][i]) {
+                                
+                                //html += keyArray + typeof jsonObject[key][i][keyArray];
+                                
+                                switch(typeof jsonObject[key][i][keyArray]) {
+                                    
+                                    case 'string':
+                                        html += createFormGroup('text', keyArray, keyArray, jsonObject[key][i][keyArray]);
+                                        break; 
+                                }
+                            }
+                            break;
+                    }
+                }
+            }
+            
+            if(typeof jsonObject[key] == 'object' && !Array.isArray(jsonObject[key])) {
+                //console.log('LEVEL DOWN');
+                for(var key2 in jsonObject[key]) {
+                    
+                    if(typeof jsonObject[key][key2] === 'string' ) {
+                        
+                    }
+
+                    if(typeof jsonObject[key][key2] === 'number' ) {
+                        
+                    }
+                    
+                    if(typeof jsonObject[key][key2] === 'boolean' ) {
+                        
+                    }
+                    
+                    console.log(key2 + '-> ' + Array.isArray(jsonObject[key][key2]));
+                    
+                    if(typeof jsonObject[key][key2] === 'object' && Array.isArray(jsonObject[key][key2]) ) {
+                        html += 'ARRAY FOUND';
+                    }
+                    
+                    switch(typeof jsonObject[key][key2]) {
+                        
+                        case 'string':
+                            html += createFormGroup('text', key2, key2, jsonObject[key][key2]);
+                            break;
+                        case 'number':
+                            html += createFormGroup('number', key2, key2, jsonObject[key][key2]);
+                            break;
+                        case 'boolean':
+                            break;
+                        
+                        case 'object':
+                            html += "<h3>" + key2 + "</h3>";
+                            
+                            
+                            
+                            break;
+                        
+                    }
+                    
+                }
+            }
+            
+        }
+        
+
+        html += '<button class="btn btn-default">Save</button>';
+        html += '</form>';
+        return html;
+        
+    }
+    
+    function createFormGroup(type, name, label, value) {
+        return '<div class="form-group"><label for="'+name+'">'+label+'</label><input type="'+type+'" class="form-control" name="'+name+'" id="'+name+'" placeholder="'+label+'" value="'+value+'"></div>';
+    }
+    
+    function _switch(html, key, expression) {
+        switch(expression) {
+            case 'string':
+                html += createFormGroup('text', key, key, expression);
+                break;
+            case 'number':
+                html += createFormGroup('number', key, key, expression);
+                break;    
+        }
+    }
     
 </script>
 

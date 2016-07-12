@@ -1,0 +1,65 @@
+<section>
+    <div class="container">
+        <h2>Edit Configuration</h2>
+        <form>
+            <h3>Meta data</h3>
+        <%
+            inputField("text", "meta.url", meta.url)
+            inputField("text", "meta.name", meta.name)
+            inputField("text", "meta.author", meta.author)
+            inputField("text", "meta.copyrights", meta.copyrights)
+            inputField("text", "meta.facebook", meta.facebook)
+            inputField("text", "meta.twitter", meta.twitter)
+            inputField("text", "meta.google", meta.google)
+        %>
+            <h3>Menu</h3>
+            
+            <h3>Header</h3>
+        <%
+            inputField("text", "header.image", header.image)
+        %>
+            <h3>Contact</h3>
+        <%
+            inputField("text", "contact.image", contact.image)
+        %>
+            <h3>whatdowedo</h3>
+        <%
+            inputField("text", "whatdowedo.title", whatdowedo.title)
+            inputField("text", "whatdowedo.missionStatement", whatdowedo.missionStatement)
+        %>            
+            <h3>whatclientssay</h3>
+            <h4>Quote 1</h4>
+        <%
+            
+            inputField("text", "whatclientssay.blockquotes[0].body", whatclientssay.blockquotes[0].body)
+            inputField("text", "whatclientssay.blockquotes[0].author", whatclientssay.blockquotes[0].author)
+            inputField("text", "whatclientssay.blockquotes[0].href", whatclientssay.blockquotes[0].href)
+            inputField("text", "whatclientssay.blockquotes[0].anchortext", whatclientssay.blockquotes[0].anchortext)
+            inputField("text", "whatclientssay.blockquotes[0].cite", whatclientssay.blockquotes[0].cite)
+            
+        %> 
+            <h4>Quote 2</h4>
+        <%
+            
+            inputField("text", "whatclientssay.blockquotes[1].body", whatclientssay.blockquotes[1].body)
+            inputField("text", "whatclientssay.blockquotes[1].author", whatclientssay.blockquotes[1].author)
+            inputField("text", "whatclientssay.blockquotes[1].href", whatclientssay.blockquotes[1].href)
+            inputField("text", "whatclientssay.blockquotes[1].anchortext", whatclientssay.blockquotes[1].anchortext)
+            inputField("text", "whatclientssay.blockquotes[1].cite", whatclientssay.blockquotes[1].cite)
+            
+        %>             
+        </form>
+    </div>
+</section>
+
+<% function inputField(type, name, value) { 
+    if(!value) value = "";
+    var label = name.split(".").slice(-1)[0];
+    %>
+    <div class="form-group">
+    <label for="<%= name %>"><%= label %></label>
+    <input type="<%= type %>" class="form-control" id="<%= name %>" placeholder="Email" value="<%= value %>">
+  </div>
+    
+<% } %>
+
