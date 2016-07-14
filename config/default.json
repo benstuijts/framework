@@ -1,0 +1,37 @@
+{
+    "meta" : {
+        "name": "affiliate landingspage framework",
+        "url" : "https://framework-stuijts.c9users.io",
+        "title" : "affiliate landingspage framework",
+        "description" : "",
+        "keywords" : "",
+        "robots" : "index, follow",
+        "author" : "Ben Stuijts",
+        "company" : {
+            "name" : "Digital Markets",
+            "address" : "Jan Hoogstadlaan 4, 3209 AM Hekelingen",
+            "url" : "http://digitalmarkets.nl",
+            "kvk" : "24308207",
+            "iban" : "",
+            "btw" : "NL1786.32.879.B01",
+            "contact" : {
+                "email" : "",
+                "telephone" : ""
+            }
+        },
+        "copyright" : "Digital Markets 2016",
+        "social" : {
+            "facebook" : "https://www.facebook.com/",
+            "google" : "https://plus.google.com/",
+            "twitter" : "https://twitter.com/"
+        },
+        "googleAnalytics" : ""
+    },
+    "aboveTheFold" : {
+        "image" : "https://ucarecdn.com/32620a4e-45d6-46fd-af5d-bcd5cf05b5a7/-/progressive/yes/",
+        "callToAction" : {
+            "href" : "url",
+            "text": "Call to Action"
+        }
+    }
+}

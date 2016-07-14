@@ -1,0 +1,77 @@
+<% include header.ejs %>
+
+
+    <div class="row">
+    <form class="form">
+        <h1>Edit Landingspage</h1>
+        <h2 class="text-primary"><i class="fa fa-cog"></i> Basis Informatie</h2>
+            <%
+                formGroup("text", "meta.name", "Naam van de website", data.meta.name);
+                formGroup("text", "meta.url", "Url van de website", data.meta.url);
+                formGroup("text", "meta.title", "Titel in google search results", data.meta.title);
+                formGroup("textarea", "meta.description", "Omschrijving in google search results", data.meta.description);
+                selectFromList("meta.robots", "Robots", data.meta.robots, ["index, follow","noindex, nofollow","index, no follow", "noindex, follow"]);
+                formGroup("textarea", "meta.googleAnalytics", "Google Analytics Code", data.meta.googleAnalytics, "Code inclusief de script tags.");
+            %>
+        
+        <h2 class="text-primary"><i class="fa fa-eye"></i> Above the fold</h2>
+        <%
+            formGroup("text", "aboveTheFold.image", "URL image", data.aboveTheFold.image, 'Bij voorkeur een image vanuit CDN uploadcare account. <a href="https://uploadcare.com/">https://uploadcare.com/</a>');
+            formGroup("text", "aboveTheFold.callToAction.href", "Call To Action Button Url", data.aboveTheFold.callToAction.href);
+            formGroup("text", "aboveTheFold.callToAction.text", "Call To Action Button Tekst", data.aboveTheFold.callToAction.text);
+            formGroup("text", "meta.social.facebook", "Facebook Pagina", data.meta.social.facebook);
+            formGroup("text", "meta.social.google", "Google Plus Pagina", data.meta.social.google);
+            formGroup("text", "meta.social.twitter", "Twitter Pagina", data.meta.social.twitter);
+        %>
+        
+        
+    </form>
+</div>    
+
+
+
+
+<% include footer.ejs %>
+
+<% function formGroup(type, name, label, value, helpblock) { %>
+
+    <% if(type=="textarea") { %>
+    <div class="form-group">
+        <label for="<%= name %>"><%= label %></label>
+        <textarea name="<%= name %>" class="form-control" rows="3">
+            <%= value %>
+        </textarea>
+        <% if(helpblock) { %>
+        <p class="help-block"><i class="fa fa-info-circle"></i> <%- helpblock %></p>   
+        <% } %>
+    </div>
+    <% return; } %>
+
+    <div class="form-group">
+        <label for="<%= name %>"><%= label %></label>
+        <input type="<%= type %>" name="<%= name %>" class="form-control" id="<%= name %>" placeholder="" value="<%= value %>">
+        <% if(helpblock) { %>
+        <p class="help-block"><i class="fa fa-info-circle"></i> <%- helpblock %></p>   
+        <% } %>
+    </div>    
+<% }%>
+
+<% function selectFromList(name, label, value, listItems, helpblock) { %>
+    <div class="form-group">
+        <label for="<%= name %>"><%= label %></label>
+    <select name="<%=name%>" class="form-control">
+        <% for(var i=0; i<listItems.length; i++) {
+            var item = listItems[i]; %>
+            <% if(item == value) { %>
+                <option selected value="<%= item %>"><%= item %></option>   
+            <% } else { %>
+                <option value="<%= item %>"><%= item %></option>
+            <% } %>
+        <% } %>
+        <% if(helpblock) { %>
+        <p class="help-block"><i class="fa fa-info-circle"></i> <%- helpblock %></p>   
+        <% } %>
+    </select>
+    
+    </div>
+<% }%>

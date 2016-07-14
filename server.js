@@ -6,6 +6,8 @@ const app       = express();
 const cookieParser= require('cookie-parser');
 const bodyParser  = require('body-parser');
 const session     = require('express-session');
+const mongoose    = require('mongoose');
+const port = process.env.PORT || 1000;
 
 const compression = require('compression');
 const cacheClient = 86400000 * 14;  // = 2 weken
@@ -13,6 +15,12 @@ const cacheClient = 86400000 * 14;  // = 2 weken
 /* Configuration */
 
 /* Database */
+mongoose.connect('localhost:27017/' + process.argv[2]);
+const db = mongoose.connection;
+db.on('error', console.error.bind(console, 'connection error:'));
+db.once('open', function() {
+  console.log('Connected to MongoDB');
+});
 
 /* View Engine */
 app.set('view engine', 'ejs');
@@ -25,12 +33,20 @@ app.set('views', './views');
   app.use(session({ secret: 'any string', saveUninitialized: true, resave: true, cookie: { maxAge: 120000 }}));
   app.use(compression());
   app.use(express.static('./public', { maxAge: cacheClient }));
-
+  app.use(function(req,res,next){
+    res.locals.add = function(data) {
+        for(var key in data) {
+            this[key] = data[key];
+        }
+    };
+    next();
+  });
 
 /* Routes */
-app.use('/admin', require('./routes/admin'));
-app.use('/', require('./routes/routes'));
+app.use('/admin', require('./routes/admin')('db instance'));
+//app.use('/', require('./routes/routes')('db instance'));
+//app.use('/', require('./routes')('db instance'));
 
-app.listen(8080, function () {
-  console.log('Blog listening on port 8080.');
+app.listen(port, function () {
+  console.log(`Landing page of ${process.argv[2]} listening on port ${port}.`);
 });

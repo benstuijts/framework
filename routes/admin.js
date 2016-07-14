@@ -1,6 +1,16 @@
 'use strict';
 const express       = require('express');
 const router        = express.Router();
+const adminUser     = require('../models/Admin');
+const dateformat    = require('dateformat');
+
+const jsonfile = require('jsonfile');
+
+jsonfile.readFile("./config/default.json", function(error, obj){
+    if(error) console.log(error);
+    
+});
+
 
 var request = require('request');
 
@@ -8,7 +18,7 @@ const bodyParser    = require('body-parser');
 const session       = require('express-session');
 const url           = require('url');
 const flash         = require('connect-flash');
-const jsonfile      = require('jsonfile');
+
 const multer        = require('multer');
 const crypto        = require('crypto');
 const mime          = require('mime');
@@ -27,6 +37,10 @@ const upload        = multer({ storage: storage });
 const token         = randomString(32);
 const imagePath     = '../images/uploads/';
 const imageListFile = './views/admin/imageList.json';
+
+
+
+
 
 //const imageList = jsonfile.readFileSync(imageListFile);
 
@@ -54,6 +68,36 @@ const saveImageList = function(list) {
     });
 };
 
+function getLandingspage(filename, callback) {
+    try {
+        jsonfile.readFile(filename, function(error, obj) {
+            if(error) {
+                console.log('error');
+                callback(error, null);
+            } else {
+                console.log('json read: ' + obj);
+                callback(null,obj);
+            }
+        });
+    } catch(error) {
+        callback(error,null);
+    }
+}
+
+function saveLandingPage(filename, obj, callback) {
+    try {
+        jsonfile.writeFile(filename, obj, function (error) {
+            if(error) {
+                throw error;
+            } else {
+                callback(true);
+            }
+        });
+    } catch(error) {
+        callback(error);
+    }
+}
+
 function handleMessage(req) {
     return {
         "success"   : req.flash("success"),
@@ -72,11 +116,19 @@ router.use(bodyParser.urlencoded({     // to support URL-encoded bodies
 })); 
 */
 
+module.exports = function(db) {
+
+/* Middleware*/
 router.use(session({
         secret: 'ssshhhhh',
         resave: false,
         saveUninitialized: true,
+        cookie: {
+            maxAge: 600000
+        }
 }));
+
+
 
 router.use(flash());
 
@@ -87,12 +139,26 @@ router.use(function(req, res, next){
         pathname: req.originalUrl
     });
     
-    res.locals = {
+    res.locals.add({
         imagePath: imagePath,
         url: _URL
-    };
+    });
+
     next();
 });
+// Cross Site Request Forgery (CSRF) protection on POST request
+router.use(function(req,res,next){
+    if(req.method === 'POST') {
+        if(req.body.token === token) {
+            next();
+        } else {
+            res.redirect('/');    
+        }
+    } else {
+        next();
+    }
+});
+
 
 const isLoggedIn = function(req, res, next) {
         if(!req.session.login) {
@@ -108,8 +174,52 @@ router.get('/', function(req, res){
     });
 });
 
+router.get('/home', function(req,res){
+    
+    
+    
+    res.render('admin/home', {
+        username:  'username',
+        password:  'password' ,
+        ip: '127.0.0.1'
+    });
+});
+
+router.get('/editlandingspage', function(req, res){
+    
+    getLandingspage("./config/default.json", function(error, data){
+        if(error) {
+            res.end('error reading file');
+        }
+        res.locals.add({data: data});
+        console.log(res.locals.data.meta);
+        
+        res.render("admin/editlandingspage", {
+            username:  'username',
+            password:  'password' ,
+            ip: '127.0.0.1',
+            data: data
+        });
+    });
+    
+});
+
 router.post('/login', function(req, res){
-    res.send('login posted');
+    const username = req.body.username;
+    const password = req.body.password;
+    const code = req.body.identificationCode;
+    
+    if(code === dateformat(new Date(), "ddmmyyyy")) {
+        req.session.login = {
+            username: username,
+            password: password,
+            ip: req.ip
+        };
+        
+        res.redirect('/admin/home');   
+    } else {
+        res.send('not logged in')
+    }
 });
 
 const renderDashboard = function(req, res) {
@@ -180,7 +290,7 @@ const uploadFile = function(req, res, next) {
     }); 
 }
 
-router.get('/dashboard', dashboard);
+router.get('/dashboard', isLoggedIn, dashboard);
 
 router.get('/dashboard/delete-image', function(req, res, next){
     let index = req.query.id;
@@ -245,7 +355,16 @@ router.get('/logout', function(req, res){
     res.redirect('/admin');
 });
 
-module.exports = router;
+router.get('*', function(req,res){
+    res.redirect('/admin');
+});
+
+return router;
+}
+
+
+
+
 
 function randomString(r){for(var n="",t="ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789",a=0;r>a;a++)n+=t.charAt(Math.floor(Math.random()*t.length));return n}
 

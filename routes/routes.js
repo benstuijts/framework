@@ -21,7 +21,9 @@ console.log(config.author);
 
 //data.replace("'", "komma");
 
-router.use(function(req, res, next){
+module.exports = function(db) {
+    
+    router.use(function(req, res, next){
     res.locals.add = function(data) {
         for(var key in data) {
             this[key] = data[key];
@@ -32,9 +34,9 @@ router.use(function(req, res, next){
     res.locals.add({data: JSON.stringify(config).replace("'", "&#39;")});
     
     next();
-});
-
-router.get('/', function(req, res) {
+    });
+    
+    router.get('/', function(req, res) {
     res.render('home', {
         title: "framework affiliate website",
         description: "This is a great template for generating a landingpage for an affiliate website. This framework will load very quickly by use of CDN image loading.",
@@ -80,5 +82,5 @@ router.get('/adjust/:code', function(req, res) {
     }
 });
 
-
-module.exports = router;
+return router;  
+};
