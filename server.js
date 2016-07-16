@@ -39,12 +39,13 @@ app.set('views', './views');
             this[key] = data[key];
         }
     };
+    res.locals.add({message: null});
     next();
   });
 
 /* Routes */
 app.use('/admin', require('./routes/admin')('db instance'));
-//app.use('/', require('./routes/routes')('db instance'));
+app.use('/', require('./routes/routes')('db instance'));
 //app.use('/', require('./routes')('db instance'));
 
 app.listen(port, function () {

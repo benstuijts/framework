@@ -2,18 +2,26 @@
 
 <script>
     
- 
+    console.log('script loading');
     
     window.onload = function() {
+        var im_contact;
+        console.log('window onload fn');
         var im = document.getElementById("header.image").value;
-        var im_contact = document.getElementById("contact.image").value;
+        if(document.getElementById("contact.image")) {
+            im_contact = document.getElementById("contact.image").value;
+        }
         
         
+        console.log(im);
         
-        document.getElementById("intro-header").style.background= "url('"+im+"') no-repeat center center";
-        document.getElementById("contact").style.background= "url('"+im_contact+"') no-repeat center center";
-
-        //document.getElementById("console").innerHTML = createFormFromJSON(data);
+        if(im) {
+            document.getElementById("intro-header").style.background= "url('"+im+"') no-repeat center center";
+        }
+        if(im_contact) {
+            document.getElementById("contact").style.background= "url('"+im_contact+"') no-repeat center center";
+        }
+        
 
     };
     

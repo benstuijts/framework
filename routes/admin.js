@@ -6,6 +6,8 @@ const dateformat    = require('dateformat');
 
 const jsonfile = require('jsonfile');
 
+const utils = require('../own_modules/utils');
+
 jsonfile.readFile("./config/default.json", function(error, obj){
     if(error) console.log(error);
     
@@ -141,24 +143,14 @@ router.use(function(req, res, next){
     
     res.locals.add({
         imagePath: imagePath,
-        url: _URL
+        url: _URL,
+        token: token
     });
 
     next();
 });
 // Cross Site Request Forgery (CSRF) protection on POST request
-router.use(function(req,res,next){
-    if(req.method === 'POST') {
-        if(req.body.token === token) {
-            next();
-        } else {
-            res.redirect('/');    
-        }
-    } else {
-        next();
-    }
-});
-
+router.use(utils.middleware.CRSF(token));
 
 const isLoggedIn = function(req, res, next) {
         if(!req.session.login) {
@@ -175,9 +167,6 @@ router.get('/', function(req, res){
 });
 
 router.get('/home', function(req,res){
-    
-    
-    
     res.render('admin/home', {
         username:  'username',
         password:  'password' ,
@@ -186,20 +175,113 @@ router.get('/home', function(req,res){
 });
 
 router.get('/editlandingspage', function(req, res){
-    
-    getLandingspage("./config/default.json", function(error, data){
+    utils.getJsonFile("./config/default.json", function(error, data){
         if(error) {
             res.end('error reading file');
         }
         res.locals.add({data: data});
-        console.log(res.locals.data.meta);
-        
+
         res.render("admin/editlandingspage", {
             username:  'username',
             password:  'password' ,
             ip: '127.0.0.1',
-            data: data
+            data: data,
+            message: handleMessage(req)
         });
+    });
+});
+router.post('/editlandingspage', function(req, res){
+    
+    // req.body nog nabewerken!
+    let obj = req.body, objNew = {};
+    
+    // opnemen in utils!
+    // Meer informatie op: http://stackoverflow.com/questions/7793811/convert-javascript-dot-notation-object-to-nested-object
+    
+function parseDotNotation( str, val, obj ){
+    var currentObj = obj,
+        keys = str.split("."), i, l = keys.length - 1, key;
+
+        for( i = 0; i < l; ++i ) {
+        key = keys[i];
+        currentObj[key] = currentObj[key] || {};
+        currentObj = currentObj[key];
+        }
+
+    currentObj[keys[i]] = val;
+    delete obj[str];
+    }
+
+    Object.expand = function( obj ) {
+
+        for( var key in obj ) {
+        parseDotNotation( key, obj[key], obj );
+        }
+        return obj;
+    };
+    
+    console.log('-----------');
+    console.log(Object.expand(req.body));
+    console.log('-----------');
+    
+    console.log('-----------');
+    
+    for(let prop in obj) {
+        
+        let level = prop.split("."), i;
+        
+        if(level.length == 1) {
+            if(!objNew[level[0]]) {
+                objNew[level[0]] = {};
+            }
+            objNew[level[0]] = obj[prop];
+        }
+        if(level.length ==2) {
+            if(!objNew[level[0]]) {
+                objNew[level[0]] = {};
+            }
+            if(!objNew[level[0]][level[1]]) {
+                objNew[level[0]][level[1]] = {};
+            }
+            objNew[level[0]][level[1]] = obj[prop];
+        }
+        if(level.length ==3) {
+            if(!objNew[level[0]]) {
+                objNew[level[0]] = {};
+            }
+            if(!objNew[level[0]][level[1]]) {
+                objNew[level[0]][level[1]] = {};
+            }
+            if(!objNew[level[0]][level[1]][level[2]]) {
+                objNew[level[0]][level[1]][level[2]] = {};
+            }
+            objNew[level[0]][level[1]][level[2]] = obj[prop];
+        }
+        if(level.length ==4) {
+            if(!objNew[level[0]]) {
+                objNew[level[0]] = {};
+            }
+            if(!objNew[level[0]][level[1]]) {
+                objNew[level[0]][level[1]] = {};
+            }
+            if(!objNew[level[0]][level[1]][level[2]][level[3]]) {
+                objNew[level[0]][level[1]][level[2]][level[3]] = {};
+            }
+            objNew[level[0]][level[1]][level[2]][level[3]] = obj[prop];
+        }
+    }
+    
+    
+ 
+    utils.saveJsonFile('./config/default.json', objNew , function(error){
+        if(error) {
+            req.flash('danger', 'Wijzigingen NIET opgeslagen.' + error);
+            res.redirect('/admin/editlandingspage');
+        } else {
+            req.flash('success', 'Wijzigingen opgeslagen.');
+            res.redirect('/admin/editlandingspage');
+        }
+        
     });
     
 });

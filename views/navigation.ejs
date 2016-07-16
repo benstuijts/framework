@@ -1,0 +1,77 @@
+
+
+<!-- Navigation -->
+    <nav class="navbar navbar-default navbar-fixed-top topnav" role="navigation">
+        <div class="container topnav">
+            <!-- Brand and toggle get grouped for better mobile display -->
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand topnav" href="#"><%= data.meta.name %></a>
+            </div>
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                <ul class="nav navbar-nav navbar-right">
+                    
+                    <% 
+                        var menuitem = '';
+                        var dropdownMenu = false;
+                        var lastitem = menu.length-1;
+                        
+                        for(i in menu) {
+                        var item = menu[i];
+                        
+                        if(/\|dropdown/g.test(item.name) == false && !/\./g.test(item.name) && !dropdownMenu) {
+                            
+                            menuitem += '<li><a href="'+item.url+'">'+item.name +'</a></li>';
+                            
+                            
+                        }
+                        if(/\|dropdown/g.test(item.name) == false && !/\./g.test(item.name) && dropdownMenu) {
+                            //einde dropdown
+                            menuitem += '</ul></li><li><a href="'+item.url+'">'+item.name +'</a></li>';
+                            
+                           
+                        }
+                        if(/\|dropdown/g.test(item.name) == false && /\./g.test(item.name) && dropdownMenu && i == lastitem) {
+                            //einde dropdown & laatste item
+                            menuitem += '<li><a href="'+item.url+'">'+item.name.split(".")[1] +'</a></li></ul></li>';
+                            
+                            
+                        }
+                        if(/\|dropdown/g.test(item.name) == false && /\./g.test(item.name) && dropdownMenu && i != lastitem) {
+                            
+                            menuitem += '<li><a href="'+item.url+'">'+item.name.split(".")[1] +'</a></li>';
+                            
+                        }
+                        if(/\|dropdown/g.test(item.name) == true && !/\./g.test(item.name)) {
+                            // start van een dropdown
+                            
+                            dropdownMenu = true;
+                            menuitem += '<li class="dropdown">';
+                            menuitem += '<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">';
+                            
+                            menuitem += item.name.split("|")[0] + '<span class="caret"></span></a>';
+                            menuitem += '<ul class="dropdown-menu">';
+                            
+                            
+                        }
+                    
+                    }
+                    %>
+                        <%- menuitem %>
+                        <%
+                    %>
+                    
+                    
+                    
+                </ul>
+            </div>
+            <!-- /.navbar-collapse -->
+        </div>
+        <!-- /.container -->
+    </nav>

@@ -1,0 +1,21 @@
+<footer class="footer">
+    <div class="container">
+        <p class="text-muted text-center">
+            <i class="fa fa-copyright"></i> Digital Markets 2016 
+            | <a href="">Over Digital Markets</a> 
+            | <a href="mailto:"><i class="fa fa-envelope"></i> Neem contact met ons op</a> 
+            | <a href="mailto:?subject=vacatures">Vacatures</a></p>
+    </div>
+</footer>
+<% include ../partials/scripts %>
+</body>
+</html>
+
+<% function load(component) {
+    if(locals[component].active == true) {
+        component = 'partials/' + component;
+        %>
+        <%- include(component) %>
+        <%
+    }    
+}%>

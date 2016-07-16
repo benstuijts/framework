@@ -2,7 +2,11 @@
 
 
     <div class="row">
-    <form class="form">
+    
+    <% handleMessage(message) %>
+        
+    <form class="form" action="/admin/editlandingspage" method="post">
+        <input type="hidden" name="token" value="<%= token %>">
         <h1>Edit Landingspage</h1>
         <h2 class="text-primary"><i class="fa fa-cog"></i> Basis Informatie</h2>
             <%
@@ -14,17 +18,29 @@
                 formGroup("textarea", "meta.googleAnalytics", "Google Analytics Code", data.meta.googleAnalytics, "Code inclusief de script tags.");
             %>
         
+        
+            
+        
         <h2 class="text-primary"><i class="fa fa-eye"></i> Above the fold</h2>
         <%
             formGroup("text", "aboveTheFold.image", "URL image", data.aboveTheFold.image, 'Bij voorkeur een image vanuit CDN uploadcare account. <a href="https://uploadcare.com/">https://uploadcare.com/</a>');
+            formGroup("text", "aboveTheFold.h1", "H1 tag", data.aboveTheFold.h1);
+            formGroup("text", "aboveTheFold.h3", "Tagline van de website", data.aboveTheFold.h3);
             formGroup("text", "aboveTheFold.callToAction.href", "Call To Action Button Url", data.aboveTheFold.callToAction.href);
             formGroup("text", "aboveTheFold.callToAction.text", "Call To Action Button Tekst", data.aboveTheFold.callToAction.text);
             formGroup("text", "meta.social.facebook", "Facebook Pagina", data.meta.social.facebook);
             formGroup("text", "meta.social.google", "Google Plus Pagina", data.meta.social.google);
             formGroup("text", "meta.social.twitter", "Twitter Pagina", data.meta.social.twitter);
         %>
+        <h2 class="text-primary"><i class="fa fa-question"></i> What do we do?</h2>
+        <%
+            checkbox("whatdowedo.active", "actief", data.whatdowedo.active, "Niet aangevinkt betekent dat dit element niet zichtbaar is op de website.")
+            formGroup("text", "whatdowedo.title", "Titel omschrijving wat de website doet", data.whatdowedo.title);
+            formGroup("textarea", "whatdowedo.missionStatement", "Mission Statement", data.whatdowedo.missionStatement);
+            
+        %>
         
-        
+        <input type="submit" class="btn btn-default" value="Save">
     </form>
 </div>    
 
@@ -38,9 +54,7 @@
     <% if(type=="textarea") { %>
     <div class="form-group">
         <label for="<%= name %>"><%= label %></label>
-        <textarea name="<%= name %>" class="form-control" rows="3">
-            <%= value %>
-        </textarea>
+        <textarea name="<%= name %>" class="form-control" rows="3"><%- trim(value) %></textarea>
         <% if(helpblock) { %>
         <p class="help-block"><i class="fa fa-info-circle"></i> <%- helpblock %></p>   
         <% } %>
@@ -55,6 +69,21 @@
         <% } %>
     </div>    
 <% }%>
+
+<% function checkbox(name, label, value, helpblock) { %>
+    <div class="checkbox">
+        <label>
+            <% if(value) { %>
+                <input type="checkbox" name="<%= name %>" checked> <%= label %>
+            <% } else { %>
+                <input type="checkbox" name="<%= name %>"> <%= label %>
+            <% } %>
+        </label>
+        <% if(helpblock) { %>
+            <p class="help-block"><i class="fa fa-info-circle"></i> <%- helpblock %></p>   
+        <% } %>
+  </div>
+<% } %>
 
 <% function selectFromList(name, label, value, listItems, helpblock) { %>
     <div class="form-group">
@@ -75,3 +104,23 @@
     
     </div>
 <% }%>
+
+<% function trim(value) {
+    return value.replace(/^\s+|\s+$/gm,'');
+}
+%>
+
+<% function handleMessage(message) { %>
+    <% if(message.success!="") { %>
+        <div class="alert alert-success" role="alert"><%= message.success %></div>
+    <% } %>
+    <% if(message.info!="") { %>
+        <div class="alert alert-info" role="alert"><%= message.info %></div>
+    <% } %>
+    <% if(message.warning!="") { %>
+        <div class="alert alert-warning" role="alert"><%= message.warning %></div>
+    <% } %>
+    <% if(message.danger!="") { %>
+        <div class="alert alert-danger" role="alert"><%= message.danger %></div>
+    <% } %>
+<% } %>
