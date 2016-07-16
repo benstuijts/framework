@@ -42,7 +42,6 @@ module.exports = {
                 console.log('error');
                 callback(error, null);
             } else {
-                console.log('json read: ' + obj);
                 callback(null,obj);
             }
         });

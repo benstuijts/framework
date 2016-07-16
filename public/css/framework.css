@@ -371,6 +371,47 @@ section#contact :-moz-placeholder{font-family:Montserrat,"Helvetica Neue",Helvet
     margin: 0 auto;
 }
 
+/* Three Deals */
+.square-box{
+    position: relative;
+    width: 100%;
+    overflow: hidden;
+    background: #4679BD;
+}
+.square-box:before{
+    content: "";
+    display: block;
+    padding-top: 100%;
+}
+.three-deals a {
+    text-decoration: none;
+    color: black;
+    position: relative;
+    display: block;
+}
+.deal {
+    padding: 8px;
+    box-sizong: border-box;
+    transition: all 0.3s ease-in;
+}
+.deal:hover {
+    transform: scale(1.1);
+}
+.price {
+    position: absolute;
+    bottom: 64px;
+    right: 16px;
+    text-align: center;
+    font-size: 2em;
+    color: black;
+    background: yellow;
+    
+    padding: 10px;
+}
+
+/* End Three Deals */
+
+
 /* Footer */
 
 .footer {

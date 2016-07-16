@@ -2,8 +2,17 @@
 <% include navigation %>
 <% include landingspage/abovethefold %>
 
-<% include landingspage/components/whatdowedo %>
+<% load('whatdowedo') %>
 
-
+<% include landingspage/components/threedeals %>
     
 <% include landingspage/footer %>
+
+<% function load(component) {
+    if(locals.data[component].active) {
+        component = 'landingspage/components/' + component;
+        %>
+        <%- include(component) %>
+    
+    <% } %> 
+<% } %>

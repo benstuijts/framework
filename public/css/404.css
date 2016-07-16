@@ -1,0 +1,29 @@
+body {
+    background: #eee;
+}
+ul {
+    list-style-type: none;
+    text-align: center;
+}
+li {
+    display: inline;
+    
+}
+li > a {
+    margin: 30px;
+}
+.very-large-text {
+    font-family: 'Bowlby One SC', cursive;
+    font-size: 30em;
+    text-align: center;
+}
+.message {
+    font-size: 3em;
+    background: darkred;
+    color: white;
+    text-align: center;
+}
+h2 {
+    font-size: 1.5em;
+    text-align: center;
+}

@@ -7,7 +7,21 @@
         
     <form class="form" action="/admin/editlandingspage" method="post">
         <input type="hidden" name="token" value="<%= token %>">
+        
         <h1>Edit Landingspage</h1>
+        <div class="quick-menu" style="position: fixed;bottom: 5%;right: 4%; z-index: 10;">
+            
+            <button type="button" class="btn btn-primary" title="Save changes">
+                <span class="glyphicon glyphicon-floppy-disk"></span>
+            </button>
+
+            <a href="" class="btn btn-default" title="New Page">
+                <span class="glyphicon glyphicon-file"></span>
+            </a>
+            
+        </div>
+        
+        
         <h2 class="text-primary"><i class="fa fa-cog"></i> Basis Informatie</h2>
             <%
                 formGroup("text", "meta.name", "Naam van de website", data.meta.name);
@@ -40,7 +54,7 @@
             
         %>
         
-        <input type="submit" class="btn btn-default" value="Save">
+        <input type="submit" class="btn btn-primary" value="Save">
     </form>
 </div>    
 

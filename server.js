@@ -40,6 +40,7 @@ app.set('views', './views');
         }
     };
     res.locals.add({message: null});
+    
     next();
   });
 
