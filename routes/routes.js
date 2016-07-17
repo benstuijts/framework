@@ -38,7 +38,7 @@ router.use(function(req, res, next){
     };
     res.locals.add({menu: menu});
     
-    res.locals.add(config);
+    //res.locals.add(config);
     
     next();
 });

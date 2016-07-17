@@ -372,45 +372,42 @@ section#contact :-moz-placeholder{font-family:Montserrat,"Helvetica Neue",Helvet
 }
 
 /* Three Deals */
-.square-box{
-    position: relative;
-    width: 100%;
-    overflow: hidden;
-    background: #4679BD;
+
+.flex-container {
+    display: flex;
+    flex-direction: row
 }
-.square-box:before{
-    content: "";
-    display: block;
-    padding-top: 100%;
+@media screen and (max-width : 768px) {
+    .flex-container {
+        flex-direction: column;
+    }
 }
-.three-deals a {
+.deal-container {
+    flex: 1;
+    margin: 8px;
+}
+a.deal-container {
     text-decoration: none;
     color: black;
-    position: relative;
-    display: block;
 }
-.deal {
-    padding: 8px;
-    box-sizong: border-box;
-    transition: all 0.3s ease-in;
-}
-.deal:hover {
-    transform: scale(1.1);
-}
-.price {
-    position: absolute;
-    bottom: 64px;
-    right: 16px;
-    text-align: center;
-    font-size: 2em;
+.deal-price {
+    font-size: 18px;
+    background: gold;
     color: black;
-    background: yellow;
-    
+    text-align: center;
     padding: 10px;
 }
 
+
 /* End Three Deals */
 
+/* Our Short Story & Our long Story*/
+.our-short-story,
+.our-long-story
+{
+    background: #eee;
+}
+/* End Our Short Story & Our long Story*/
 
 /* Footer */
 

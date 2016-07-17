@@ -1,5 +1,5 @@
 module.exports =  [
-        { "name": "about", "url": ""},
+        { "name": "wat", "url": "#what-do-we-do"},
         { "name": "contact", "url": ""},
         { "name": "main|dropdown"},
         { "name": "main.item1", "url": ""},
