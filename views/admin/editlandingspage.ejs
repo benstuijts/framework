@@ -1,10 +1,54 @@
 <% include header.ejs %>
 
+<section>
+    <% handleMessage(message) %>
+</section>
+
+<section>
+    <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
+        <div class="panel panel-default">
+            <div class="panel-heading" role="tab" id="headingOne">
+                <h4 class="panel-title">
+                    <a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                      Frame work gebaseerd op Aida marketing model (klik voor meer info)
+                    </a>
+                </h4>
+                
+            </div>
+            <div id="collapseOne" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingOne">
+                <div class="panel-body">
+                    <p>
+                        Het AIDA model is een model dat beschrijft welke vier stappen moeten worden gezet om je doelgroep aan te 
+                        zetten tot een actie. De letters uit het AIDA model staan voor <strong>Attention, Interest, Desire en Action</strong>. 
+                        Deze woorden zijn de vier stappen die moeten worden ondernomen. 
+                    </p>
+                    <img src="https://www.marketingportaal.nl/wp-content/uploads/2013/05/aida1.gif">
+                    <h4>Het AIDA model uitgelegd</h4>
+                    <ul>
+                        <li>
+                            Attention: in de eerste fase wordt de doelgroep blootgesteld aan een boodschap. Dit kan bijvoorbeeld een commercial zijn. De bedoeling in deze fase is dat de doelgroep de boodschap opmerkt. De boodschap moet de aandacht van de doelgroep wekken, het moet nieuwsgierig maken.
+                        </li>
+                        <li>
+                            Interest: in deze fase moet de interesse van de doelgroep worden opgewekt. De doelgroep moet de indruk krijgen dat de boodschap relevant voor hen is. Dit kan bijvoorbeeld worden gedaan door unieke verkooppunten te noemen.
+                        </li>
+                        <li>
+                            Desire: in de volgende fase gaat het om verlangen. De interesse moet worden om gezet in een verlangen naar het product of dienst. De doelgroep moet het gevoel krijgen het echt nodig te hebben en er niet zonder te kunnen.
+
+                        </li>
+                        <li>
+                            Action: in de laatste fase wordt de doelgroep opgeroepen tot het uitvoeren van een actie. Als zij de actie daadwerkelijke uitvoeren, is het doel van de boodschap bereikt.
+
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            
+        </div>
+    </div>
+</section>
 
     <div class="row">
-    
-    <% handleMessage(message) %>
-        
+
     <form class="form" action="/admin/editlandingspage" method="post">
         <input type="hidden" name="token" value="<%= token %>">
         
@@ -39,10 +83,10 @@
         
             
         
-        <h2 class="text-primary"><i class="fa fa-eye"></i> Above the fold</h2>
+        <h2 class="text-primary"><i class="fa fa-eye"></i> Above the fold (Attention)</h2>
         <%
             formGroup("text", "aboveTheFold.image", "URL image", data.aboveTheFold.image, 'Bij voorkeur een image vanuit CDN uploadcare account. <a href="https://uploadcare.com/">https://uploadcare.com/</a>');
-            formGroup("text", "aboveTheFold.h1", "H1 tag", data.aboveTheFold.h1);
+            formGroup("text", "aboveTheFold.h1", "H1 tag", data.aboveTheFold.h1, "Alle elementen moeten laten zien waar deze site over gaat. De belangrijkste zijn de image en de h1 tag. Zij vormen de directe advertentie van de site en bepalen voor het grootste gedeelte of de bezoeker de site serieus neemt en verder gaat bekijken.");
             formGroup("text", "aboveTheFold.h3", "Tagline van de website", data.aboveTheFold.h3);
             formGroup("text", "aboveTheFold.callToAction.href", "Call To Action Button Url", data.aboveTheFold.callToAction.href);
             formGroup("text", "aboveTheFold.callToAction.text", "Call To Action Button Tekst", data.aboveTheFold.callToAction.text);
@@ -50,22 +94,80 @@
             formGroup("text", "meta.social.google", "Google Plus Pagina", data.meta.social.google);
             formGroup("text", "meta.social.twitter", "Twitter Pagina", data.meta.social.twitter);
         %>
-        <h2 class="text-primary"><i class="fa fa-question"></i> What do we do?</h2>
+        <h2 class="text-primary"><i class="fa fa-question"></i> What do we do? (Interest)</h2>
         <%
-            checkbox("whatdowedo.active", "actief", data.whatdowedo.active, "Niet aangevinkt betekent dat dit element niet zichtbaar is op de website.")
+            checkbox("whatdowedo.active", "actief", data.whatdowedo.active, "Niet aangevinkt betekent dat dit element niet zichtbaar is op de website.");
             formGroup("text", "whatdowedo.title", "Titel omschrijving wat de website doet", data.whatdowedo.title);
             formGroup("textarea", "whatdowedo.missionStatement", "Mission Statement", data.whatdowedo.missionStatement);
             
         %>
+        <h2 class="text-primary"><i class="fa fa-comment"></i> Testimonials (Interest)</h2>
+        <%
+            checkbox("testimonials.active", "actief", data.testimonials.active, "Niet aangevinkt betekent dat dit element niet zichtbaar is op de website.");
+        %>
+        
+        <h2 class="text-primary"><i class="fa fa-euro"></i> Three interesting deals (Desire)</h2>
+        <%
+            checkbox("threedeals.active", "actief", data.threedeals.active, "Niet aangevinkt betekent dat dit element niet zichtbaar is op de website.");
+        %>
+            <h3>deal #1</h3>
+        <%
+            formGroup("text", "threedeals.deal1.header", "Header van de deal", data.threedeals.deal1.header);
+            formGroup("text", "threedeals.deal1.image", "Image van de deal", data.threedeals.deal1.image);
+            formGroup("text", "threedeals.deal1.price", "Prijs van de deal", data.threedeals.deal1.price);
+        %>
+            <h3>deal #2</h3>
+        <%
+            formGroup("text", "threedeals.deal2.header", "Header van de deal", data.threedeals.deal2.header);
+            formGroup("text", "threedeals.deal2.image", "Image van de deal", data.threedeals.deal2.image);
+            formGroup("text", "threedeals.deal2.price", "Prijs van de deal", data.threedeals.deal2.price);
+        %>
+            <h3>deal #3</h3>
+        <%
+            formGroup("text", "threedeals.deal3.header", "Header van de deal", data.threedeals.deal3.header);
+            formGroup("text", "threedeals.deal3.image", "Image van de deal", data.threedeals.deal3.image);
+            formGroup("text", "threedeals.deal3.price", "Prijs van de deal", data.threedeals.deal3.price);
+        %>
+        
+        <h2 class="text-primary"><i class="fa fa-link"></i> Direct Call To Action (Action)</h2>
         
         <input type="submit" class="btn btn-primary" value="Save">
         <a href="/" target="_blank" class="btn btn-info">Bekijk wijzigingen</a>
     </form>
 </div>    
+<div id="timer" style="position: fixed; z-index: 100; bottom: 8px; left: 16px; color: white; background: dodgerblue; padding: 10px">
+    <p>One Hour Setup</p>
+    <i class="fa fa-clock-o fa-2x"></i> <span id="time">00:00:00</span>
+</div>
+<script>
+    window.onload = function() {
+        var timer = document.getElementById("time");
+        var start = new Date();
+        setInterval(function(){
+            var t = getTime(start);
+            timer.innerHTML = ('0' + t.hours).slice(-2) + ":" + ('0' + t.minutes).slice(-2) + ":" + ('0' + t.seconds).slice(-2);
+        },1000);
+    };
+    function getTime(startTime){
+      var t =  Date.parse(new Date()) - Date.parse(startTime);
+      var seconds = Math.floor( (t/1000) % 60 );
+      var minutes = Math.floor( (t/1000/60) % 60 );
+      var hours = Math.floor( (t/(1000*60*60)) % 24 );
+      var days = Math.floor( t/(1000*60*60*24) );
+      return {
+        'total': t,
+        'days': days,
+        'hours': hours,
+        'minutes': minutes,
+        'seconds': seconds
+      };
+    }
+</script>
 
+<script   src="https://code.jquery.com/jquery-2.2.4.min.js"   integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44="   crossorigin="anonymous"></script>
 
-
-
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" 
+        integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
 <% include footer.ejs %>
 
 <% function formGroup(type, name, label, value, helpblock) { %>

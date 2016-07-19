@@ -25,5 +25,27 @@
     "active": "on",
     "title": "Binnen 1 uur een landingspagina voor een affilliate site online",
     "missionStatement": "Our Mission Statement"
+  },
+  "testimonials": {
+    "active": "on"
+  },
+  "threedeals": {
+    "active" : "on",
+    "deal1" : {
+      "header":"Header deal 1",
+      "image" : "http://www.hutterites.org/wp-content/uploads/2012/03/placeholder.jpg",
+      "price" : "vanaf € 0,00"
+    },
+    "deal2" : {
+      "header":"Header deal 2",
+      "image" : "http://www.hutterites.org/wp-content/uploads/2012/03/placeholder.jpg",
+      "price" : "€ 10,00 inclusief BTW"
+    },
+    "deal3" : {
+      "header":"Header deal 3",
+      "image" : "http://www.hutterites.org/wp-content/uploads/2012/03/placeholder.jpg",
+      "price" : "tot € 150,00"
+    }
   }
+  
 }
