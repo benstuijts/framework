@@ -1,0 +1,21 @@
+<% var testimonials = data.testimonials; %>
+
+<section class="testimonials bg-info" id="testimonials">
+    <div class="container">
+        <div class="col-lg-12 text-center">
+            <h2 class="section-heading">Wat zeggen onze bezoekers?</h2>
+        </div>
+        <hr class="intro-divider">
+        <% for(var index in testimonials.quotes) { %>
+            <% var quote = testimonials.quotes[index]; %>
+            <div class="col-lg-6 col-sm-12">
+                <blockquote>
+                    <p><%= quote.body %></p>
+                    <footer>
+                        <%= quote.author %> <a href="<%= quote.href %>"><%= quote.anchortext %></a>
+                    </footer>
+                </blockquote>
+            </div>
+        <% } %>
+    </div>
+</section>

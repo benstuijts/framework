@@ -23,29 +23,53 @@
   },
   "whatdowedo": {
     "active": "on",
-    "title": "Binnen 1 uur een landingspagina voor een affilliate site online",
-    "missionStatement": "Our Mission Statement"
+    "title": "All inclusives betekent onbezorgd op vakantie",
+    "missionStatement": "Beleef een vakantie zonder stress, waar alles tot in de puntjes verzorgd is, en dat allemaal voor een uitstekende prijs-kwaliteitverhouding. Dat wilt u toch ook? Daarom biedt goedkopeallinclusives een eindeloze hoeveelheid All Inclusive vakanties aan, waardoor u tijdens uw vakantie alleen nog maar onbezorgd hoeft te genieten.Bovendien kan een All-Inclusive vakantie 2016 worden gezien als een perfecte gezinsvakantie. U kunt namelijk met het hele gezin gebruik maken van de talloze faciliteiten die aanwezig zijn in de luxe hotels en appartementen. Kijk dus rustig rond op onze gebruiksvriendelijk website, en kies uit ons ruime aanbod de vakantie die het beste bij u past.",
+    "callToAction": {
+      "href": "url",
+      "text": "Ga nu op zoek naar jouw all inclusive vakantie"
+    }
   },
   "testimonials": {
-    "active": "on"
+    "active": "on",
+    "quotes": {
+      "0": {
+        "body": "Wij hebben een mooie vakantie gevonden op goedkopeallinclusives.nl, bedankt!",
+        "author": "familie Jansen",
+        "anchortext": "facebook pagina goedkopeallinclusives",
+        "href": "url"
+      },
+      "1": {
+        "body": "Ik moet zeggen dat de site gemakkelijk in gebruik is en dat je snel een goede deal vindt.",
+        "author": "Daniel Pietersen",
+        "anchortext": "linkedin pagine",
+        "href": "url"
+      }
+    }
   },
   "threedeals": {
-    "active" : "on",
-    "deal1" : {
-      "header":"Header deal 1",
-      "image" : "http://www.hutterites.org/wp-content/uploads/2012/03/placeholder.jpg",
-      "price" : "vanaf € 0,00"
+    "active": "on",
+    "deal1": {
+      "header": "Header deal 1",
+      "image": "http://www.hutterites.org/wp-content/uploads/2012/03/placeholder.jpg",
+      "price": "vanaf € 0,00"
     },
-    "deal2" : {
-      "header":"Header deal 2",
-      "image" : "http://www.hutterites.org/wp-content/uploads/2012/03/placeholder.jpg",
-      "price" : "€ 10,00 inclusief BTW"
+    "deal2": {
+      "header": "Header deal 2",
+      "image": "http://www.hutterites.org/wp-content/uploads/2012/03/placeholder.jpg",
+      "price": "€ 10,00 inclusief BTW"
     },
-    "deal3" : {
-      "header":"Header deal 3",
-      "image" : "http://www.hutterites.org/wp-content/uploads/2012/03/placeholder.jpg",
-      "price" : "tot € 150,00"
+    "deal3": {
+      "header": "Header deal 3",
+      "image": "http://www.hutterites.org/wp-content/uploads/2012/03/placeholder.jpg",
+      "price": "tot € 150,00"
     }
+  },
+  "directcalltoaction": {
+    "active": "on",
+    "header": "Ga nu op zoek naar jouw ideale all inclusive vakantie!",
+    "body": "Wij hebben het grootste aanbod zonvakanties van Nederland. ",
+    "anchortext": "Laat mij goedkope all inclusive vakanties zien",
+    "href": "/url"
   }
-  
 }

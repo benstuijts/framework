@@ -99,12 +99,23 @@
             checkbox("whatdowedo.active", "actief", data.whatdowedo.active, "Niet aangevinkt betekent dat dit element niet zichtbaar is op de website.");
             formGroup("text", "whatdowedo.title", "Titel omschrijving wat de website doet", data.whatdowedo.title);
             formGroup("textarea", "whatdowedo.missionStatement", "Mission Statement", data.whatdowedo.missionStatement);
-            
+            formGroup("text", "whatdowedo.callToAction.href", "Call To Action Button Url", data.whatdowedo.callToAction.href);
+            formGroup("text", "whatdowedo.callToAction.text", "Call To Action Button Tekst", data.whatdowedo.callToAction.text);
         %>
         <h2 class="text-primary"><i class="fa fa-comment"></i> Testimonials (Interest)</h2>
         <%
             checkbox("testimonials.active", "actief", data.testimonials.active, "Niet aangevinkt betekent dat dit element niet zichtbaar is op de website.");
         %>
+        
+        <% for(index in data.testimonials.quotes) { %>
+            <h3>Testimonial #<%= index %></h3>
+            <% 
+                formGroup("text", "testimonials.quotes." + index + ".body", "Quote Testimonial", data.testimonials.quotes[index].body);
+                formGroup("text","testimonials.quotes."+ index +".author", "Auteur Testimonial", data.testimonials.quotes[index].author);
+                formGroup("text","testimonials.quotes."+ index +".anchortext", "Link anchortext", data.testimonials.quotes[index].anchortext);
+                formGroup("text","testimonials.quotes."+ index +".href", "Link URL", data.testimonials.quotes[index].href);
+            %>
+        <% } %>
         
         <h2 class="text-primary"><i class="fa fa-euro"></i> Three interesting deals (Desire)</h2>
         <%
@@ -130,6 +141,14 @@
         %>
         
         <h2 class="text-primary"><i class="fa fa-link"></i> Direct Call To Action (Action)</h2>
+        
+        <%
+            checkbox("directcalltoaction.active", "actief", data.directcalltoaction.active, "Niet aangevinkt betekent dat dit element niet zichtbaar is op de website.");
+            formGroup("text", "directcalltoaction.header", "Header van direct call to action", data.directcalltoaction.header);
+            formGroup("text", "directcalltoaction.body", "Tekst onder de header", data.directcalltoaction.body);
+            formGroup("text", "directcalltoaction.anchortext", "Link anchortext", data.directcalltoaction.anchortext);
+            formGroup("text", "directcalltoaction.href", "Link URL", data.directcalltoaction.href);
+        %>
         
         <input type="submit" class="btn btn-primary" value="Save">
         <a href="/" target="_blank" class="btn btn-info">Bekijk wijzigingen</a>
