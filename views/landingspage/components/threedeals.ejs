@@ -1,3 +1,5 @@
+<% var threedeals = data.threedeals %>
+
 <div id="three-deals"></div>
 <section class="three-deals">
     <div class="container">
@@ -10,43 +12,21 @@
                 
                 <div class="flex-container">
                     
-                    
-                    <a href="/404" class="deal-container">
-                        <h3>Header deal 1</h3>
-                        <img class="img-responsive" src="http://www.hutterites.org/wp-content/uploads/2012/03/placeholder.jpg">
+                <% for(index in threedeals.deals) { %>
+                    <% var deal = threedeals.deals[index]; %>
+                    <a href="<%= deal.href %>" class="deal-container">
+                        <h3><%= deal.header %></h3>
+                        <img class="img-responsive" src="<%= deal.image %>">
                         <div class="deal-price">
-                            € 10,-
+                            <%= deal.price %>
                         </div>
-                        <ul class="list-group">
-                            <li class="list-group-item">zoveel van x</li>
-                            <li class="list-group-item">zoveel van y</li>
-                        </ul>
                     </a>
                     
-                    <a href="/404" class="deal-container">
-                        <h3>Header deal 2</h3>
-                        <img class="img-responsive" src="http://www.hutterites.org/wp-content/uploads/2012/03/placeholder.jpg">
-                        <div class="deal-price">
-                            € 20,-
-                        </div>
-                        <ul class="list-group">
-                            <li class="list-group-item">zoveel van x</li>
-                            <li class="list-group-item">zoveel van y</li>
-                            <li class="list-group-item">plus: voordeel</li>
-                        </ul>
-
-                    </a>
-                    <a href="/deal3" class="deal-container">
-                        <h3>Header deal 3</h3>
-                        <img class="img-responsive" src="http://www.hutterites.org/wp-content/uploads/2012/03/placeholder.jpg">
-                        <div class="deal-price">
-                            € 10,-
-                        </div>
-                        <ul class="list-group">
-                            <li class="list-group-item">zoveel van x</li>
-                            <li class="list-group-item">zoveel van y</li>
-                        </ul>
-                    </a>
+                <% } %>
+                    
+                       
+                    
+                    
                 </div>
                 
             </div>

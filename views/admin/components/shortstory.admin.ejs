@@ -1,0 +1,17 @@
+<% include ../functions.ejs %>
+<% var shortstory = data.shortstory %>
+
+<h2 class="collapse-header text-primary">
+    <a role="button" class="collapse-anchor btn btn-default" data-toggle="collapse" data-parent="" href="#shortstory" aria-expanded="true" aria-controls="">
+        <i class="fa fa-commenting"></i> Short Story (Interest) <i class="fa fa-caret-down" aria-hidden="true"></i>  
+    </a>
+</h2>
+<div id="shortstory" class="panel-collapse collapse" role="" aria-labelledby="">
+    <%
+        checkbox("shortstory.active", "actief", shortstory.active, "Niet aangevinkt betekent dat dit element niet zichtbaar is op de website.");
+        formGroup("text", "shortstory.header", "Header van shortstory", shortstory.header);
+        formGroup("textarea", "shortstory.body", "Body van shortstory", shortstory.body);
+        formGroup("text", "shortstory.anchortext", "Anchortext van de button", shortstory.anchortext);
+        formGroup("text", "shortstory.href", "Link van de button", shortstory.href, "Leeg laten = button verschijnt niet op de pagina.");
+    %>
+</div>

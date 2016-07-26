@@ -1,4 +1,5 @@
 <% include header.ejs %>
+<% include functions.ejs %>
 
 <section>
     <% handleMessage(message) %>
@@ -49,13 +50,36 @@
 
     <div class="row">
 
-    <form class="form" action="/admin/editlandingspage" method="post">
+    <form name="editlandingspageform" class="form" action="/admin/editlandingspage" method="post">
         <input type="hidden" name="token" value="<%= token %>">
         
         <h1>Edit Landingspage</h1>
+        
+        <!--
+        richting van de oplossing:
+        
+        http://stackoverflow.com/questions/18649881/handling-input-arrays-in-express-forms
+        
+        -->
+        
+        <% include components/companyinfo.admin.ejs %>
+        <% include ../landingspage/components/basicinfo.admin.ejs %>
+        <% include ../landingspage/components/abovethefold.admin.ejs %>
+        <% include ../landingspage/components/quickselect.admin.ejs %>
+        <% include ../landingspage/components/whatdowedo.admin.ejs %>
+        <% include ../landingspage/components/testimonials.admin.ejs %>
+        <% include ../landingspage/components/threedeals.admin.ejs %>
+        <% include ../landingspage/components/shortstory.admin.ejs %>
+        <% include components/articles.admin.ejs %>
+        <% include ../landingspage/components/directcalltoaction.admin.ejs %>
+        <% include ../landingspage/components/longstory.admin.ejs %>
+    
+       
+        
+        
         <div class="quick-menu" style="position: fixed;bottom: 5%;right: 4%; z-index: 10;">
             
-            <button type="button" class="btn btn-primary" title="Save changes">
+            <button type="submit" class="btn btn-primary" title="Save changes">
                 <span class="glyphicon glyphicon-floppy-disk"></span>
             </button>
 
@@ -63,96 +87,40 @@
                 <span class="glyphicon glyphicon-file"></span>
             </a>
             
-            <a href="/" class="btn btn-info" title="Landingspage">
+            <a href="/" class="btn btn-info" target="_blank" title="Landingspage">
                 <span class="glyphicon glyphicon-home"></span>
             </a>
             
         </div>
-        
-        
-        <h2 class="text-primary"><i class="fa fa-cog"></i> Basis Informatie</h2>
-            <%
-                formGroup("text", "meta.name", "Naam van de website", data.meta.name);
-                formGroup("text", "meta.url", "Url van de website", data.meta.url);
-                formGroup("text", "meta.title", "Titel in google search results", data.meta.title);
-                formGroup("textarea", "meta.description", "Omschrijving in google search results", data.meta.description);
-                selectFromList("meta.robots", "Robots", data.meta.robots, ["index, follow","noindex, nofollow","index, no follow", "noindex, follow"]);
-                formGroup("textarea", "meta.googleAnalytics", "Google Analytics Code", data.meta.googleAnalytics, "Code inclusief de script tags.");
-            %>
-        
-        
-            
-        
-        <h2 class="text-primary"><i class="fa fa-eye"></i> Above the fold (Attention)</h2>
-        <%
-            formGroup("text", "aboveTheFold.image", "URL image", data.aboveTheFold.image, 'Bij voorkeur een image vanuit CDN uploadcare account. <a href="https://uploadcare.com/">https://uploadcare.com/</a>');
-            formGroup("text", "aboveTheFold.h1", "H1 tag", data.aboveTheFold.h1, "Alle elementen moeten laten zien waar deze site over gaat. De belangrijkste zijn de image en de h1 tag. Zij vormen de directe advertentie van de site en bepalen voor het grootste gedeelte of de bezoeker de site serieus neemt en verder gaat bekijken.");
-            formGroup("text", "aboveTheFold.h3", "Tagline van de website", data.aboveTheFold.h3);
-            formGroup("text", "aboveTheFold.callToAction.href", "Call To Action Button Url", data.aboveTheFold.callToAction.href);
-            formGroup("text", "aboveTheFold.callToAction.text", "Call To Action Button Tekst", data.aboveTheFold.callToAction.text);
-            formGroup("text", "meta.social.facebook", "Facebook Pagina", data.meta.social.facebook);
-            formGroup("text", "meta.social.google", "Google Plus Pagina", data.meta.social.google);
-            formGroup("text", "meta.social.twitter", "Twitter Pagina", data.meta.social.twitter);
-        %>
-        <h2 class="text-primary"><i class="fa fa-question"></i> What do we do? (Interest)</h2>
-        <%
-            checkbox("whatdowedo.active", "actief", data.whatdowedo.active, "Niet aangevinkt betekent dat dit element niet zichtbaar is op de website.");
-            formGroup("text", "whatdowedo.title", "Titel omschrijving wat de website doet", data.whatdowedo.title);
-            formGroup("textarea", "whatdowedo.missionStatement", "Mission Statement", data.whatdowedo.missionStatement);
-            formGroup("text", "whatdowedo.callToAction.href", "Call To Action Button Url", data.whatdowedo.callToAction.href);
-            formGroup("text", "whatdowedo.callToAction.text", "Call To Action Button Tekst", data.whatdowedo.callToAction.text);
-        %>
-        <h2 class="text-primary"><i class="fa fa-comment"></i> Testimonials (Interest)</h2>
-        <%
-            checkbox("testimonials.active", "actief", data.testimonials.active, "Niet aangevinkt betekent dat dit element niet zichtbaar is op de website.");
-        %>
-        
-        <% for(index in data.testimonials.quotes) { %>
-            <h3>Testimonial #<%= index %></h3>
-            <% 
-                formGroup("text", "testimonials.quotes." + index + ".body", "Quote Testimonial", data.testimonials.quotes[index].body);
-                formGroup("text","testimonials.quotes."+ index +".author", "Auteur Testimonial", data.testimonials.quotes[index].author);
-                formGroup("text","testimonials.quotes."+ index +".anchortext", "Link anchortext", data.testimonials.quotes[index].anchortext);
-                formGroup("text","testimonials.quotes."+ index +".href", "Link URL", data.testimonials.quotes[index].href);
-            %>
-        <% } %>
-        
-        <h2 class="text-primary"><i class="fa fa-euro"></i> Three interesting deals (Desire)</h2>
-        <%
-            checkbox("threedeals.active", "actief", data.threedeals.active, "Niet aangevinkt betekent dat dit element niet zichtbaar is op de website.");
-        %>
-            <h3>deal #1</h3>
-        <%
-            formGroup("text", "threedeals.deal1.header", "Header van de deal", data.threedeals.deal1.header);
-            formGroup("text", "threedeals.deal1.image", "Image van de deal", data.threedeals.deal1.image);
-            formGroup("text", "threedeals.deal1.price", "Prijs van de deal", data.threedeals.deal1.price);
-        %>
-            <h3>deal #2</h3>
-        <%
-            formGroup("text", "threedeals.deal2.header", "Header van de deal", data.threedeals.deal2.header);
-            formGroup("text", "threedeals.deal2.image", "Image van de deal", data.threedeals.deal2.image);
-            formGroup("text", "threedeals.deal2.price", "Prijs van de deal", data.threedeals.deal2.price);
-        %>
-            <h3>deal #3</h3>
-        <%
-            formGroup("text", "threedeals.deal3.header", "Header van de deal", data.threedeals.deal3.header);
-            formGroup("text", "threedeals.deal3.image", "Image van de deal", data.threedeals.deal3.image);
-            formGroup("text", "threedeals.deal3.price", "Prijs van de deal", data.threedeals.deal3.price);
-        %>
-        
-        <h2 class="text-primary"><i class="fa fa-link"></i> Direct Call To Action (Action)</h2>
-        
-        <%
-            checkbox("directcalltoaction.active", "actief", data.directcalltoaction.active, "Niet aangevinkt betekent dat dit element niet zichtbaar is op de website.");
-            formGroup("text", "directcalltoaction.header", "Header van direct call to action", data.directcalltoaction.header);
-            formGroup("text", "directcalltoaction.body", "Tekst onder de header", data.directcalltoaction.body);
-            formGroup("text", "directcalltoaction.anchortext", "Link anchortext", data.directcalltoaction.anchortext);
-            formGroup("text", "directcalltoaction.href", "Link URL", data.directcalltoaction.href);
-        %>
-        
+    
+        <hr>
         <input type="submit" class="btn btn-primary" value="Save">
         <a href="/" target="_blank" class="btn btn-info">Bekijk wijzigingen</a>
     </form>
+    
+    <section>
+        <h3>Handige zaken</h3>
+        <ul class="list-group">
+            <a class="list-group-item" href="https://support.google.com/webmasters/answer/6259634" target="_blank">
+                Get your site on Google
+            </a>
+            <a class="list-group-item" href="http://www.bing.com/toolbox/submit-site-url" target="_blank">
+                Submit your site to Bing
+            </a>
+            
+        </ul>
+        <h3>Uploadcare uploaden images</h3>
+        <input type="hidden" name="picture" role="uploadcare-uploader" />
+        
+        <h3>Resources voor later?</h3>
+        <ul class="list-group">
+            <a class="list-group-item" href="https://www.addthis.com/plans" target="_blank">
+                www.addthis.com | AddThis share buttons, targeting tools and content recommendations help you get more likes, shares and followers and keep them coming back
+            </a>
+        </ul>
+        
+    </section> 
+    
 </div>    
 <div id="timer" style="position: fixed; z-index: 100; bottom: 8px; left: 16px; color: white; background: dodgerblue; padding: 10px">
     <p>One Hour Setup</p>

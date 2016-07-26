@@ -25,6 +25,7 @@ db.once('open', function() {
 /* View Engine */
 app.set('view engine', 'ejs');
 app.set('views', './views');
+app.set('json spaces', 4);
 
 /* Middleware */
   app.use(cookieParser());

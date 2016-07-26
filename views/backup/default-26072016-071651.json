@@ -28,7 +28,7 @@
   },
   "aboveTheFold": {
     "image": "https://ucarecdn.com/32620a4e-45d6-46fd-af5d-bcd5cf05b5a7/-/progressive/yes/",
-    "h1": "VERSIE 2",
+    "h1": "Landingspage Framework version 1.0",
     "h3": "Easy & quick site builder, loadingtime < 2s",
     "callToAction": {
       "href": "url",
@@ -88,7 +88,6 @@
     }
   },
   "threedeals": {
-    "active": "on",
     "deals": {
       "0": {
         "header": "Header deal 1",
@@ -125,7 +124,6 @@
     "href": "/url"
   },
   "longstory": {
-    "active": "on",
     "header": "A great header of a long story",
     "leadparagraph": "lead paragraph",
     "body": "body text"

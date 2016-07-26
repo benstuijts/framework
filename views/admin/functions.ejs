@@ -1,0 +1,87 @@
+<% function formGroup(type, name, label, value, helpblock) { %>
+
+    <% if(type=="textarea") { %>
+    <div class="form-group">
+        <label for="<%= name %>"><%= label %></label>
+        <textarea name="<%= name %>" class="form-control" rows="5"><%- trim(value) %></textarea>
+        <% if(helpblock) { %>
+        <p class="help-block"><i class="fa fa-info-circle"></i> <%- helpblock %></p>   
+        <% } %>
+    </div>
+    <% return; } %>
+
+    <div class="form-group">
+        <label for="<%= name %>"><%= label %></label>
+        <input type="<%= type %>" name="<%= name %>" class="form-control" id="<%= name %>" placeholder="" value="<%= value %>">
+        <% if(helpblock) { %>
+        <p class="help-block"><i class="fa fa-info-circle"></i> <%- helpblock %></p>   
+        <% } %>
+    </div>    
+<% }%>
+
+<% function checkbox(name, label, value, helpblock) { %>
+    <div class="checkbox">
+        <label>
+            <% if(value) { %>
+                <input type="checkbox" name="<%= name %>" checked> <%= label %>
+            <% } else { %>
+                <input type="checkbox" name="<%= name %>"> <%= label %>
+            <% } %>
+        </label>
+        <% if(helpblock) { %>
+            <p class="help-block"><i class="fa fa-info-circle"></i> <%- helpblock %></p>   
+        <% } %>
+  </div>
+<% } %>
+
+<% function selectFromList(name, label, value, listItems, helpblock) { %>
+    <div class="form-group">
+        <label for="<%= name %>"><%= label %></label>
+    <select name="<%=name%>" class="form-control">
+        <% for(var i=0; i<listItems.length; i++) {
+            var item = listItems[i]; %>
+            <% if(item == value) { %>
+                <option selected value="<%= item %>"><%= item %></option>   
+            <% } else { %>
+                <option value="<%= item %>"><%= item %></option>
+            <% } %>
+        <% } %>
+        <% if(helpblock) { %>
+        <p class="help-block"><i class="fa fa-info-circle"></i> <%- helpblock %></p>   
+        <% } %>
+    </select>
+    
+    </div>
+<% }%>
+
+<% function trim(value) {
+    return value.replace(/^\s+|\s+$/gm,'');
+}
+%>
+
+<% function handleMessage(message) { %>
+    <% if(message.success!="") { %>
+        <div class="alert alert-success" role="alert"><%= message.success %></div>
+    <% } %>
+    <% if(message.info!="") { %>
+        <div class="alert alert-info" role="alert"><%= message.info %></div>
+    <% } %>
+    <% if(message.warning!="") { %>
+        <div class="alert alert-warning" role="alert"><%= message.warning %></div>
+    <% } %>
+    <% if(message.danger!="") { %>
+        <div class="alert alert-danger" role="alert"><%= message.danger %></div>
+    <% } %>
+<% } %>
+
+<% admin = {
+    header: function(icon, title) {
+        %>
+            <h2 class="collapse-header"2>
+                <a role="button" class="collapse-anchor btn btn-default" data-toggle="collapse" data-parent="" href="#<%= id %>" aria-expanded="true" aria-controls="">
+                    <i class="fa <%= icon %>"></i> <%= title %> <i class="fa fa-caret-down" aria-hidden="true"></i>  
+                </a>
+            </h2>        
+        <%
+    }
+}%>

@@ -64,5 +64,26 @@ module.exports = {
         }    
     },
     
+    parseDotNotation: function(str, val, obj ){
+        var currentObj = obj,
+        keys = str.split("."), i, l = keys.length - 1, key;
 
+        for( i = 0; i < l; ++i ) {
+            key = keys[i];
+            currentObj[key] = currentObj[key] || {};
+            currentObj = currentObj[key];
+        }
+
+        currentObj[keys[i]] = val;
+        delete obj[str];
+    },
+    
+    expand: function(obj) {
+        for( var key in obj ) {
+            this.parseDotNotation( key, obj[key], obj );
+        }
+        return obj;
+    },
+    
+    
 };

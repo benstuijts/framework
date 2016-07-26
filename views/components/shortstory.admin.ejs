@@ -1,0 +1,18 @@
+<% include ../admin/functions.ejs %>
+
+<% var id = "shortstory" %>
+<% var shortstory = data.shortstory || {} %>
+
+
+<% admin.header("fa-file", "short story") %>
+
+<div id="<%= id %>" class="panel-collapse collapse" role="" aria-labelledby="">
+    <% 
+        formGroup("text", "shortstory.header", "Header", shortstory.header || "" )
+        formGroup("text", "shortstory.header", "Body", shortstory.body || "" )
+        // Dit werkt dus niet, omdat en calltoaction en anchortext niet bestaan...
+        //formGroup("text", "shortstory.calltoaction.anchortext", "Button anchor tekst", shortstory.calltoaction.anchortext || "" )
+        //formGroup("text", "shortstory.calltoaction.href", "Button link", shortstory.calltoaction.href || "" )
+    %>
+</div>
+

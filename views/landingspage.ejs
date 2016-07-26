@@ -1,15 +1,14 @@
 <% include landingspage/header %>
 <% include navigation %>
-<% include landingspage/abovethefold %>
+<% include landingspage/components/abovethefold %>
 
-<% include landingspage/components/quickselect %>
+<% load('quickselect') %>
 <% load('whatdowedo') %>
 <% load('testimonials') %>
-<% include landingspage/components/threedeals %>
-
-<% include landingspage/components/ourshortstory %>
+<% load('threedeals') %>
+<% load('shortstory') %>
 <% load('directcalltoaction') %>
-<% include landingspage/components/ourlongstory %>
+<% load('longstory') %>
 
     
 <% include landingspage/footer %>

@@ -1,0 +1,19 @@
+<% include ../functions.ejs %>
+<% var abovethefold = data.abovethefold %>
+<h2 class="collapse-header">
+    <a role="button" class="collapse-anchor btn btn-default" data-toggle="collapse" data-parent="" href="#abovethefold" aria-expanded="true" aria-controls="">
+        <i class="fa fa-eye"></i> Above the fold (Attention) <i class="fa fa-caret-down" aria-hidden="true"></i>  
+    </a>
+</h2>
+<div id="abovethefold" class="panel-collapse collapse" role="" aria-labelledby="">
+    <% 
+        formGroup("text", "aboveTheFold.image", "URL image", data.aboveTheFold.image, 'Bij voorkeur een image vanuit CDN uploadcare account. <a href="https://uploadcare.com/">https://uploadcare.com/</a>');
+        formGroup("text", "aboveTheFold.h1", "H1 tag", data.aboveTheFold.h1, "Alle elementen moeten laten zien waar deze site over gaat. De belangrijkste zijn de image en de h1 tag. Zij vormen de directe advertentie van de site en bepalen voor het grootste gedeelte of de bezoeker de site serieus neemt en verder gaat bekijken.");
+        formGroup("text", "aboveTheFold.h3", "Tagline van de website", data.aboveTheFold.h3);
+        formGroup("text", "aboveTheFold.callToAction.href", "Call To Action Button Url", data.aboveTheFold.callToAction.href);
+        formGroup("text", "aboveTheFold.callToAction.text", "Call To Action Button Tekst", data.aboveTheFold.callToAction.text);
+        formGroup("text", "meta.social.facebook", "Facebook Pagina", data.meta.social.facebook);
+        formGroup("text", "meta.social.google", "Google Plus Pagina", data.meta.social.google);
+        formGroup("text", "meta.social.twitter", "Twitter Pagina", data.meta.social.twitter);
+    %>
+</div>

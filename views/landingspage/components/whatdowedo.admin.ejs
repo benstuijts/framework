@@ -1,0 +1,17 @@
+<% include ../../admin/functions.ejs %>
+<% var whatdowedo = data.whatdowedo %>
+
+<h2 class="collapse-header text-primary">
+    <a role="button" class="collapse-anchor btn btn-default" data-toggle="collapse" data-parent="" href="#whatdowedo" aria-expanded="true" aria-controls="">
+        <i class="fa fa-question"></i> What do we do? (Interest) <i class="fa fa-caret-down" aria-hidden="true"></i>  
+    </a>
+</h2>
+<div id="whatdowedo" class="panel-collapse collapse" role="" aria-labelledby="">
+    <% 
+        checkbox("whatdowedo.active", "actief", whatdowedo.active, "Niet aangevinkt betekent dat dit element niet zichtbaar is op de website.");
+        formGroup("text", "whatdowedo.title", "Titel omschrijving wat de website doet", whatdowedo.title);
+        formGroup("textarea", "whatdowedo.missionStatement", "Mission Statement", whatdowedo.missionStatement);
+        formGroup("text", "whatdowedo.callToAction.href", "Call To Action Button Url", whatdowedo.callToAction.href);
+        formGroup("text", "whatdowedo.callToAction.text", "Call To Action Button Tekst", whatdowedo.callToAction.text);
+    %>
+</div>

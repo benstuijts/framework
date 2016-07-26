@@ -1,0 +1,23 @@
+<% include ../../admin/functions.ejs %>
+<% var threedeals = data.threedeals %>
+
+<h2 class="collapse-header">
+    <a role="button" class="collapse-anchor btn btn-default" data-toggle="collapse" data-parent="" href="#threedeals" aria-expanded="true" aria-controls="">
+        <i class="fa fa-euro"></i> Three Deals (Desire) <i class="fa fa-caret-down" aria-hidden="true"></i>
+    </a>
+</h2>
+<div id="threedeals" class="panel-collapse collapse" role="" aria-labelledby="">
+        <%    
+        checkbox("threedeals.active", "actief", threedeals.active, "Niet aangevinkt betekent dat dit element niet zichtbaar is op de website.");
+        %>
+        <% for(index in threedeals.deals) { %>
+            <h3>Deal #<%= index %></h3>
+            <%
+            formGroup("text", "threedeals.deals."+ index +".header", "Header van de deal", data.threedeals.deals[index].header);
+            formGroup("text", "threedeals.deals."+ index +".image", "Image van de deal", data.threedeals.deals[index].image);
+            formGroup("text", "threedeals.deals."+ index+".price", "Prijs van de deal", data.threedeals.deals[index].price);
+            formGroup("text", "threedeals.deals."+ index +".href", "Link naar de deal", data.threedeals.deals[index].href);
+            %>
+        <% } %>
+    
+</div>
