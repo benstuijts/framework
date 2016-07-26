@@ -7,7 +7,7 @@ const cookieParser= require('cookie-parser');
 const bodyParser  = require('body-parser');
 const session     = require('express-session');
 const mongoose    = require('mongoose');
-const port = process.env.PORT || 1000;
+const port = process.argv[2] || process.env.PORT || 1000;
 
 const compression = require('compression');
 const cacheClient = 86400000 * 14;  // = 2 weken
