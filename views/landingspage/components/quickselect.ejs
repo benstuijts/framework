@@ -9,7 +9,7 @@
             <% var link = quickselect.links[index]; %>
             
             <a href="<%= link.href %>" class="deal-container">
-                <img class="img-responsive" src="<%= link.image %>">
+                <img class="img-responsive" src="<%= link.image %>" alt="<%= link.anchortext %>, <%= data.meta.name %>">
                 <h4><%= link.anchortext %></h4>
             </a>
             

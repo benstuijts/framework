@@ -16,7 +16,7 @@
                     <% var deal = threedeals.deals[index]; %>
                     <a href="<%= deal.href %>" class="deal-container">
                         <h3><%= deal.header %></h3>
-                        <img class="img-responsive" src="<%= deal.image %>">
+                        <img class="img-responsive" src="<%= deal.image %>" alt="<%= deal.header %>, <%= data.meta.name %>">
                         <div class="deal-price">
                             <%= deal.price %>
                         </div>

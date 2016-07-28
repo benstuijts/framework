@@ -65,6 +65,8 @@
         <% include components/companyinfo.admin.ejs %>
         <% include ../landingspage/components/basicinfo.admin.ejs %>
         <% include ../landingspage/components/abovethefold.admin.ejs %>
+        <% include ../landingspage/components/affiliate.admin.ejs %>
+        
         <% include ../landingspage/components/quickselect.admin.ejs %>
         <% include ../landingspage/components/whatdowedo.admin.ejs %>
         <% include ../landingspage/components/testimonials.admin.ejs %>
@@ -101,6 +103,10 @@
     <section>
         <h3>Handige zaken</h3>
         <ul class="list-group">
+            <a class="list-group-item list-group-item-info" href="http://digitalmarkets.nl/api/subscribe?id=180812012&href=<%= data.meta.url %>&anchortext=<%= data.meta.title %>" target="_blank">
+                <span class="badge">!</span>
+                Website aanmelden op DigitalMarkets.nl (pas doen als website minimaal 1x opgeslagen is)
+            </a>
             <a class="list-group-item" href="https://support.google.com/webmasters/answer/6259634" target="_blank">
                 Get your site on Google
             </a>

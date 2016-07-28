@@ -31,7 +31,7 @@
     "h1": "VERSIE 2",
     "h3": "Easy & quick site builder, loadingtime < 2s",
     "callToAction": {
-      "href": "/besparen",
+      "href": "url",
       "text": "Call to Action - click me"
     }
   },

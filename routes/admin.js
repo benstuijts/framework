@@ -318,6 +318,8 @@ function parseDotNotation( str, val, obj ){
     
     */
     
+    console.log(objNew.affiliate);
+    
     let backupDate = dateformat(new Date(), "dd-mm-yyyy-hh.MM.ss");
     let backupfile = './config/backup/' + backupDate + '.json';
     console.log(backupfile);
@@ -341,17 +343,6 @@ function parseDotNotation( str, val, obj ){
     });
     
     return;
-    
-    utils.saveJsonFile('./config/default.json', objNew , function(error){
-        if(error) {
-            req.flash('danger', 'Wijzigingen NIET opgeslagen.' + error);
-            res.redirect('/admin/editlandingspage');
-        } else {
-            req.flash('success', 'Wijzigingen opgeslagen.');
-            res.redirect('/admin/editlandingspage');
-        }
-        
-    });
     
 });
 

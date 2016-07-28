@@ -57,32 +57,49 @@ router.get('/', function(req,res){
     });
 });
     
-/* Development only */     
-router.get('/home', function(req, res) {
-  
-    res.render('home', {
-        meta: {
-            
-            
-            keywords: ["template"]
-        },
-        description: "This is a great template for generating a landingpage for an affiliate website. This framework will load very quickly by use of CDN image loading.",
-        title: "framework affiliate website",
-        css: "framework.css",
-        h1: "Framework",
-        h2: "Easy & quick site builder, loadingtime < 2s",
-        stats: {
-            visitorsPerMonth: Math.round(Math.random()*1000+4),
-            pages: 10,
-            salesPerMonth: Math.round(Math.random()*20+4),
-            usersOnline: Math.round(Math.random()*10+1)
-        }
-    });
-});
+
 
 const paginas = ['/test', '/over', '/contact'];
 
+/* Standard Affiliate page */
+router.get('/besparen', function(req, res){
+    utils.getJsonFile("./config/default.json", function(error, data){
+        if(error) {
+            res.end('error reading file');
+        }
+        res.locals.add({data: data});
+        
+        res.render("affiliate/home", {
+            data: data
+        });
+    });
+});
+
+
+
 /* Routing saved pages */
+
+router.get('*', function(req, res){
+    utils.getJsonFile('./config/pages.json', function(error, pages){
+        let route = req.path;
+        if(pages.indexOf(route)>-1) {
+            utils.getJsonFile("./config/default.json", function(error, data){
+                if(error) {
+                    res.end('error reading file');
+                }
+                res.locals.add({data: data});
+                
+                res.render('page/page', {
+                    data: data
+                });
+            });
+        } else {
+            res.render('404');
+        }
+    });    
+});
+
+
 router.get(paginas, function(req,res){
     let route = req.path;
     let pagina = route.replace(/^\/+/, "");
