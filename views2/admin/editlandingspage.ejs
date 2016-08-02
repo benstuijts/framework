@@ -1,0 +1,152 @@
+<% include ./templates/header.ejs %>
+<% include functions.ejs %>
+
+<div class="container">
+    
+    <section>
+        <% if(message) {
+            handle.message(message)
+        } %>
+    </section>
+    
+    <section>
+    
+        <form name="editlandingspageform" class="form" action="/admin/editlandingspage" method="post">
+            <input type="hidden" name="token" value="<%= token %>">
+            
+            <h1>Edit Landingspage</h1>
+            
+            <% include components/companyinfo.admin.ejs %>
+            <% include components/basicinfo.admin.ejs %>
+            <% include components/abovethefold.admin.ejs %>
+            <% include components/affiliate.admin.ejs %>
+            
+            <% include components/quickselect.admin.ejs %>
+            <% include components/whatdowedo.admin.ejs %>
+            <% include components/testimonials.admin.ejs %>
+            <% include components/threedeals.admin.ejs %>
+            <% include components/shortstory.admin.ejs %>
+            <% include components/directcalltoaction.admin.ejs %>
+            <% include components/longstory.admin.ejs %>
+         
+        <div class="quick-menu" style="position: fixed;bottom: 5%;right: 4%; z-index: 10;">
+            
+            <button type="submit" class="btn btn-primary btn-circle btn-lg" title="Save changes">
+                <span class="glyphicon glyphicon-floppy-disk"></span>
+            </button>
+
+            <a href="/admin/addpage" class="btn btn-default btn-circle btn-lg" title="New Page">
+                <span class="glyphicon glyphicon-file"></span>
+            </a>
+            
+            <a href="/" class="btn btn-info btn-circle btn-lg" target="_blank" title="Landingspage">
+                <span class="glyphicon glyphicon-eye-open"></span>
+            </a>
+            
+        </div>  
+        
+        <hr>
+        <input type="submit" class="btn btn-primary" value="SAVE">
+        <a href="/" target="_blank" class="btn">BEKIJK WIJZIGINGEN</a>
+    
+        </form>
+    </section>
+    
+    <section>
+        <h3>Handige zaken</h3>
+        <ul class="list-group">
+            <a class="list-group-item list-group-item-info" 
+                href="http://digitalmarkets.nl/api/subscribe?id=180812012&href=<%= data.meta.url %>&anchortext=<%= data.meta.title %>&image=<%= data.meta.image %>&description=<%= data.meta.description %>&title=<%= data.meta.title %>"
+                target="_blank">
+                <span class="badge">!</span>
+                Website aanmelden op DigitalMarkets.nl (pas doen als website minimaal 1x opgeslagen is)
+            </a>
+            <a class="list-group-item" href="https://support.google.com/webmasters/answer/6259634" target="_blank">
+                Get your site on Google
+            </a>
+            <a class="list-group-item" href="http://www.bing.com/toolbox/submit-site-url" target="_blank">
+                Submit your site to Bing
+            </a>
+            
+        </ul>
+        <h3>Uploadcare uploaden images</h3>
+        <input type="hidden" name="picture" role="uploadcare-uploader" />
+        
+        <h3>Resources voor later?</h3>
+        <ul class="list-group">
+            <a class="list-group-item" href="https://www.addthis.com/plans" target="_blank">
+                www.addthis.com | AddThis share buttons, targeting tools and content recommendations help you get more likes, shares and followers and keep them coming back
+            </a>
+        </ul>
+        
+    </section> 
+
+</div>
+
+<div id="timer" style="position: fixed; z-index: 100; bottom: 8px; left: 16px; color: white; background: dodgerblue; padding: 10px">
+    <p>One Hour Setup</p>
+    <i class="fa fa-clock-o fa-2x"></i> <span id="time">00:00:00</span>
+</div>
+
+<% function formGroup(type, name, label, value, helpblock) { %>
+
+    <% if(type=="textarea") { %>
+    <div class="form-group">
+        <label for="<%= name %>"><%= label %></label>
+        <textarea name="<%= name %>" class="form-control" rows="3"><%- trim(value) %></textarea>
+        <% if(helpblock) { %>
+        <p class="help-block"><i class="fa fa-info-circle"></i> <%- helpblock %></p>   
+        <% } %>
+    </div>
+    <% return; } %>
+
+    <div class="form-group">
+        <label for="<%= name %>"><%= label %></label>
+        <input type="<%= type %>" name="<%= name %>" class="form-control" id="<%= name %>" placeholder="" value="<%= value %>">
+        <% if(helpblock) { %>
+        <p class="help-block"><i class="fa fa-info-circle"></i> <%- helpblock %></p>   
+        <% } %>
+    </div>    
+<% }%>
+
+<% function checkbox(name, label, value, helpblock) { %>
+    <div class="checkbox">
+        <label>
+            <% if(value) { %>
+                <input type="checkbox" name="<%= name %>" checked> <%= label %>
+            <% } else { %>
+                <input type="checkbox" name="<%= name %>"> <%= label %>
+            <% } %>
+        </label>
+        <% if(helpblock) { %>
+            <p class="help-block"><i class="fa fa-info-circle"></i> <%- helpblock %></p>   
+        <% } %>
+  </div>
+<% } %>
+
+<% function selectFromList(name, label, value, listItems, helpblock) { %>
+    <div class="form-group">
+        <label for="<%= name %>"><%= label %></label>
+    <select name="<%=name%>" class="form-control">
+        <% for(var i=0; i<listItems.length; i++) {
+            var item = listItems[i]; %>
+            <% if(item == value) { %>
+                <option selected value="<%= item %>"><%= item %></option>   
+            <% } else { %>
+                <option value="<%= item %>"><%= item %></option>
+            <% } %>
+        <% } %>
+        <% if(helpblock) { %>
+        <p class="help-block"><i class="fa fa-info-circle"></i> <%- helpblock %></p>   
+        <% } %>
+    </select>
+    
+    </div>
+<% }%>
+
+<% function trim(value) {
+    return value.replace(/^\s+|\s+$/gm,'');
+}
+%>
+
+<% include ./templates/footer.ejs %>

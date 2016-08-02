@@ -1,0 +1,65 @@
+<% include ../../admin/functions.ejs %>
+<% var testimonials = data.testimonials %>
+
+<h2 class="collapse-header">
+    <a role="button" class="collapse-anchor btn btn-default" data-toggle="collapse" data-parent="" href="#testimonials" aria-expanded="true" aria-controls="">
+        <i class="fa fa-comment"></i> Testimonials (Interest) <i class="fa fa-caret-down" aria-hidden="true"></i>
+    </a>
+</h2>
+<div id="testimonials" class="panel-collapse collapse" role="" aria-labelledby="">
+    <% 
+        checkbox("testimonials.active", "actief", data.testimonials.active, "Niet aangevinkt betekent dat dit element niet zichtbaar is op de website.");
+    %>
+    
+    <% for(index in testimonials.quotes) { %>
+    <div>
+        <h3>
+            Testimonial #<%= index %>
+            <button type="button" onClick= "<%- 'del(' + index + ')' %>" class="btn btn-default btn-circle pull-right"><i class="glyphicon glyphicon-remove"></i></button>
+        </h3>
+        <% 
+            formGroup("text", "testimonials.quotes." + index + ".body", "Quote Testimonial", testimonials.quotes[index].body);
+            formGroup("text","testimonials.quotes."+ index +".author", "Auteur Testimonial", testimonials.quotes[index].author);
+            formGroup("text","testimonials.quotes."+ index +".anchortext", "Link anchortext", testimonials.quotes[index].anchortext);
+            formGroup("text","testimonials.quotes."+ index +".href", "Link URL", testimonials.quotes[index].href);
+        %>
+    </div>
+    <% } %>
+    
+    
+    <button type="button" onClick= "<%- 'add(' + index + ')' %>" class="btn btn-primary btn-circle"><i class="glyphicon glyphicon-plus"></i></button>
+    
+</div>
+
+
+<script>
+    
+    function del(index) {
+        return;
+    }
+
+
+    function add(index) {
+        return;
+        var i = index + 1;
+        var element = document.createElement('div');
+        var html = '<h3>Testimonial #' + i + '</h3>';
+            html += createFormGroup("text", "testimonials.quotes."+i+".body", "Quote Testimonial", "");
+            html += createFormGroup("text", "testimonials.quotes."+i+".author", "Auteur Testimonial", "");
+            html += createFormGroup("text", "testimonials.quotes."+i+".anchortext", "Link anchortext", "");
+            html += createFormGroup("text", "testimonials.quotes."+i+".href", "Link URL", "");
+        element.innerHTML = html;
+        document.getElementById("testimonials").appendChild(element);
+    }
+    
+    function createFormGroup(type, name, label, value) {
+        
+        var html = '<div class="form-group">';
+            html+= '<label>' + label + '</label>';
+            html+= '<input class="form-control type="'+type+'" name="'+name+'" value="'+value+'">';
+            html+= '</div>';
+        return html;
+    }
+    
+</script>
+

@@ -4,6 +4,14 @@ body {
   background: #eee;
 }
 
+body {
+    font-family: "Lato","Helvetica Neue",Helvetica,Arial,sans-serif;
+    text-rendering: optimizeLegibility;
+    line-height: 1.5em;
+    font-weight: 300;
+    
+}
+
 .primary-color-bg {    background: #564138;    }
 .primary-color-text {    color: #564138;    }
 .secundary-color-bg {    background: #2E86AB;}

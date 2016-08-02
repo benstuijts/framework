@@ -1,0 +1,61 @@
+<% include ../../admin/functions.ejs %>
+<% var quickselect = data.quickselect %>
+
+<h2 class="collapse-header">
+    <a role="button" class="collapse-anchor btn btn-default" data-toggle="collapse" data-parent="" href="#quickselect" aria-expanded="true" aria-controls="">
+        <i class="fa fa-fighter-jet"></i> Quickselect (Interest) <i class="fa fa-caret-down" aria-hidden="true"></i>
+    </a>
+</h2>
+<div id="quickselect" class="panel-collapse collapse" role="" aria-labelledby="">
+    <% 
+        checkbox("quickselect.active", "actief", quickselect.active, "Niet aangevinkt betekent dat dit element niet zichtbaar is op de website.");
+    %>
+    
+    <% for(index in quickselect.links) { %>
+    <% var link = quickselect.links[index]; %>
+    <div>
+        <h3>
+            Link #<%= index %>
+        </h3>
+        <% 
+            formGroup("text", "quickselect.links." + index + ".image", "Image van de link", link.image);
+            formGroup("text","quickselect.links."+ index +".anchortext", "Anchortext van de link", link.anchortext);
+            formGroup("text","quickselect.links."+ index +".href", "Link href", link.href);
+        %>
+    </div>
+    <% } %>
+    
+</div>
+
+
+<script>
+    
+    function del(index) {
+        return;
+    }
+
+
+    function add(index) {
+        return;
+        var i = index + 1;
+        var element = document.createElement('div');
+        var html = '<h3>Testimonial #' + i + '</h3>';
+            html += createFormGroup("text", "testimonials.quotes."+i+".body", "Quote Testimonial", "");
+            html += createFormGroup("text", "testimonials.quotes."+i+".author", "Auteur Testimonial", "");
+            html += createFormGroup("text", "testimonials.quotes."+i+".anchortext", "Link anchortext", "");
+            html += createFormGroup("text", "testimonials.quotes."+i+".href", "Link URL", "");
+        element.innerHTML = html;
+        document.getElementById("testimonials").appendChild(element);
+    }
+    
+    function createFormGroup(type, name, label, value) {
+        
+        var html = '<div class="form-group">';
+            html+= '<label>' + label + '</label>';
+            html+= '<input class="form-control type="'+type+'" name="'+name+'" value="'+value+'">';
+            html+= '</div>';
+        return html;
+    }
+    
+</script>
+

@@ -1,0 +1,30 @@
+<script   src="https://code.jquery.com/jquery-2.2.4.min.js"   integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44="   crossorigin="anonymous"></script>
+
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" 
+        integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
+<script>
+    window.onload = function() {
+        var timer = document.getElementById("time");
+        var start = new Date();
+        setInterval(function(){
+            var t = getTime(start);
+            timer.innerHTML = ('0' + t.hours).slice(-2) + ":" + ('0' + t.minutes).slice(-2) + ":" + ('0' + t.seconds).slice(-2);
+        },1000);
+    };
+    function getTime(startTime){
+      var t =  Date.parse(new Date()) - Date.parse(startTime);
+      var seconds = Math.floor( (t/1000) % 60 );
+      var minutes = Math.floor( (t/1000/60) % 60 );
+      var hours = Math.floor( (t/(1000*60*60)) % 24 );
+      var days = Math.floor( t/(1000*60*60*24) );
+      return {
+        'total': t,
+        'days': days,
+        'hours': hours,
+        'minutes': minutes,
+        'seconds': seconds
+      };
+    }
+</script>
+</body>
+</html>

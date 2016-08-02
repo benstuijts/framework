@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html dir="ltr" lang="nl">
+<head>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <meta name="author" content="DigitalMarkets" />
+    <meta name="description" content="">
+    <meta name="keywords" content="">
+    <meta name="Robots" content="nofollow, noindex>">
+
+    <title>Add Page | Admin Area</title>
+    
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" 
+        integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+    
+    <!--
+    <link rel="stylesheet" href="https://bootswatch.com/cosmo/bootstrap.min.css" >
+    -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" 
+        integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
+    
+    <!-- Latest compiled and minified JavaScript -->
+    
+    <!-- Uploadcare Widget -->
+    <script>
+        UPLOADCARE_PUBLIC_KEY = "afdb3ffa01b5c75c8834";
+    </script>
+    <script charset="utf-8" src="//ucarecdn.com/widget/2.9.0/uploadcare/uploadcare.full.min.js"></script>
+
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet" 
+    integrity="sha384-T8Gy5hrqNKT+hzMclPo118YTQO6cYprQmhrYwIiQ/3axmI1hQomh7Ud2hPOy8SP1" crossorigin="anonymous">
+    
+    <link rel="stylesheet" href="/css/admin/admin.css">
+</head>
+<body>
+    <nav class="navbar navbar-default ">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+            <a class="navbar-brand" href="#">Admin</a> 
+        </div>
+            
+            <ul class="nav navbar-nav">
+                <li>
+                    <a href="/admin/home">Menu</a>
+                </li>
+                <li>
+                    <a href="/admin/editlandingspage">Edit Landingspage</a>
+                </li>
+                <li>
+                    <a href="/admin/addpage">Add new Page</a>
+                </li>
+                <li>
+                    <a href="/admin/backupfiles">Backup Files Landingspage</a>
+                </li>
+                <li>
+                    <a href="/admin/editjson">Edit Json</a>
+                </li>
+                <li>
+                    <a>
+                        <input type="hidden" name="picture" role="uploadcare-uploader"/>
+                    </a>
+                    
+                </li>
+            </ul>
+            <ul class="nav navbar-nav navbar-right">
+                <li>
+                    <a class="text-color-light-text" href="logout"><span class="glyphicon glyphicon-road" aria-hidden="true"></span> Logout</a>
+                </li>
+            </ul>
+        </div>
+    </nav>

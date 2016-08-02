@@ -1,0 +1,23 @@
+<% include ../../admin/functions.ejs %>
+<% var affiliate = data.affiliate %>
+
+<h2 class="collapse-header">
+    <% if(affiliate.htmlcode == "") { %>
+        <a role="button" class="collapse-anchor btn btn-danger" data-toggle="collapse" data-parent="" href="#affiliate" aria-expanded="true" aria-controls="">
+            <i class="fa fa-money"></i> Affiliate <i class="fa fa-caret-down" aria-hidden="true"></i>  
+        </a>
+    <% } else { %> 
+        <a role="button" class="collapse-anchor btn btn-default" data-toggle="collapse" data-parent="" href="#affiliate" aria-expanded="true" aria-controls="">
+            <i class="fa fa-money"></i> Affiliate <i class="fa fa-caret-down" aria-hidden="true"></i>  
+        </a>
+    <% } %>
+</h2>
+<div id="affiliate" class="panel-collapse collapse" role="" aria-labelledby="">
+    <% 
+        formGroup("text", "affiliate.header", "Header van de affiliate pagina", affiliate.header);
+        formGroup("textarea", "affiliate.leadparagraph", "Eerste paragraaf van de affiliate pagina", affiliate.leadparagraph );
+        formGroup("textarea", "affiliate.body", "Begeleidende tekst", affiliate.body);
+        formGroup("textarea", "affiliate.htmlcode", "HTML code", affiliate.htmlcode);
+    %>
+    
+</div>
