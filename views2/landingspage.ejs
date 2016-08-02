@@ -1,0 +1,23 @@
+<% include templates/header %>
+<% include templates/navigation %>
+<% include components/abovethefold %>
+
+<% load('quickselect') %>
+<% load('whatdowedo') %>
+<% load('testimonials') %>
+<% load('threedeals') %>
+<% load('shortstory') %>
+<% load('directcalltoaction') %>
+<% load('longstory') %>
+
+<% include templates/footer %>
+<% include templates/scripts %>
+
+<% function load(component) {
+    if(locals.data[component].active) {
+        component = './components/' + component;
+        %>
+        <%- include(component) %>
+    
+    <% } %> 
+<% } %>

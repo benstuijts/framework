@@ -85,3 +85,144 @@
         <%
     }
 }%>
+
+<% form = {
+    
+    formGroup: function(type, name, label, value, helpblock, arrayElements) {
+        
+        switch(type) {
+            case "textarea":
+                %>
+                    <div class="form-group">
+                        <label for="<%= name %>"><%= label %> (<%= type%>)</label>
+                        <textarea name="<%= name %>" class="form-control" rows="5"><%- trim(value) %></textarea>
+                        <% if(helpblock) { %>
+                        <p class="help-block"><i class="fa fa-info-circle"></i> <%- helpblock %></p>   
+                        <% } %>
+                    </div>
+                <%
+            break;
+            case "text":
+                %>
+                    <div class="form-group">
+                        <label for="<%= name %>"><%= label %> (<%= type%>)</label>
+                        <input type="<%= type %>" name="<%= name %>" class="form-control" id="<%= name %>" placeholder="" value="<%= value %>">
+                        <% if(helpblock) { %>
+                        <p class="help-block"><i class="fa fa-info-circle"></i> <%- helpblock %></p>   
+                        <% } %>
+                    </div>
+                
+                <%
+            break;
+            case "number":
+                %>
+                <div class="form-group">
+                    <label for="<%= name %>"><%= label %> (<%= type%>)</label>
+                    <input type="number" name="<%= name %>" class="form-control" id="<%= name %>" placeholder="" value="<%= value %>">
+                    <% if(helpblock) { %>
+                    <p class="help-block"><i class="fa fa-info-circle"></i> <%- helpblock %></p>   
+                    <% } %>
+                </div>
+                <%
+            break;
+            case "json":
+                %>
+                    <div class="form-group">
+                        <label for="<%= name %>"><%= label %> (<%= type%>)</label>
+                        <textarea rows="10" name="<%= name %>" class="form-control" rows="5"><%- JSON.stringify(value,null,4) %></textarea>
+                        <% if(helpblock) { %>
+                        <p class="help-block"><i class="fa fa-info-circle"></i> <%- helpblock %></p>   
+                        <% } %>
+                    </div>
+                
+                <%
+            break;
+        }
+    }
+    
+    
+} %>
+
+<% handle = {
+    
+    message: function(message) {
+        if(message.success!="") { %> 
+        <div class="alert alert-success" role="alert"><%= message.success %></div>
+        <% } 
+        if(message.info!="") { %>
+        <div class="alert alert-info" role="alert"><%= message.info %></div>
+        <% }
+        if(message.warning!="") { %>
+        <div class="alert alert-warning" role="alert"><%= message.warning %></div>
+        <% }
+        if(message.danger!="") { %>
+        <div class="alert alert-danger" role="alert"><%= message.danger %></div>
+        <% } else { %>
+            <p>no message</p>
+        <% } 
+    },
+    
+    renderAdminComponent: function(component) { %>
+        <h2 class="collapse-header text-primary">
+            <a role="button" class="collapse-anchor btn btn-default" data-toggle="collapse" data-parent="" href="#<%= component.name %>" aria-expanded="true" aria-controls="">
+                <%= component.name %> <i class="fa fa-caret-down" aria-hidden="true"></i>
+            </a>
+        </h2>
+        <div id="<%= component.name %>" class="panel-collapse collapse" role="" aria-labelledby="">
+            <% checkbox(component.name+".active", "actief", component.active, "Niet aangevinkt betekent dat dit element niet zichtbaar is op de website.") %>
+            <% formGroup("number", component.name+".index", "Volgorde op de website", component.index) %>
+            <% for(name in component.properties) { 
+                    property = component.properties[name];
+                    if(property.value == "" || !property.value ) {
+                        form.formGroup(property.type, component.name + "." + name, name, property.default);
+                    } else {
+                        form.formGroup(property.type, component.name + "." + name, name, property.value);
+                    }
+                    
+                
+                
+             } %>
+        </div>
+    <% },
+    
+    
+    renderAdminComponent2: function(component) { %>
+        <h2 class="collapse-header text-primary">
+            <a role="button" class="collapse-anchor btn btn-default" data-toggle="collapse" data-parent="" href="#<%= component.name %>" aria-expanded="true" aria-controls="">
+                <%= component.name %> <i class="fa fa-caret-down" aria-hidden="true"></i>
+            </a>
+        </h2>
+        <div id="<%= component.name %>" class="panel-collapse collapse" role="" aria-labelledby="">
+            <% checkbox(component.name+".active", "actief", component.active, "Niet aangevinkt betekent dat dit element niet zichtbaar is op de website.") %>
+            <% formGroup("number", component.name+".index", "Volgorde op de website", component.index) %>
+            
+            <% for(name in component.properties) { 
+                    property = component.properties[name];
+                    if(property.value == "" || !property.value ) {
+                        form.formGroup(property.type, component.name + "." + name, name, property.default);
+                    } else {
+                        form.formGroup(property.type, component.name + "." + name, name, property.value);
+                    }
+                    
+                
+                
+             } %>
+            
+        </div>
+        
+    <% },
+    
+    renderAvailableComponent: function(component) {
+        %>
+        <div class="col-xs-6 col-sm-4 col-md-3">
+            <div class="well">
+                <strong><%= component.name %></strong>
+                <a href="/admin/landingspage/add?component=<%= component.name %>" class="btn btn-default btn-circle pull-right" title="add to website">+</a>
+            </div>
+            
+        </div>
+        
+        <%
+    }
+    
+} %>

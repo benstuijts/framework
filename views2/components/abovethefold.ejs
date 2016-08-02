@@ -1,0 +1,42 @@
+<% var aboveTheFold = locals.data.aboveTheFold; %>
+
+<input type="hidden" value="<%= aboveTheFold.image %>" id="header.image">
+
+<div class="intro-header" id="intro-header">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="intro-message">
+                        
+                        <h1><%= aboveTheFold.h1 %></h1>
+                        <h2><%= aboveTheFold.h3 %></h2>
+ 
+                        <br><br>
+ 
+                        <a href="<%= aboveTheFold.callToAction.href %>" class="btn btn-default btn-lg call-to-action animated infinite pulse">
+                            <%= aboveTheFold.callToAction.text %>
+                        </a>
+                        
+                        <hr class="intro-divider">
+                        <ul class="list-inline intro-social-buttons">
+                            <li>
+                                <a href="<%= data.meta.social.twitter %>" class="btn btn-info btn-sm"><i class="fa fa-twitter fa-fw"></i> <span class="network-name">Twitter</span></a>
+                            </li>
+                            <li>
+                                <a href="<%= data.meta.social.facebook %>" class="btn btn-primary btn-sm"><i class="fa fa-facebook fa-fw"></i> <span class="network-name">Facebook</span></a>
+                            </li>
+                            <li>
+                                <a href="<%= data.meta.social.google %>" class="btn btn-danger btn-sm"><i class="fa fa-google-plus fa-fw"></i> <span class="network-name">Google</span></a>
+                            </li>
+                        </ul>
+                        
+                        
+                        
+                    </div>
+                </div>
+            </div>
+
+        </div>
+        <!-- /.container -->
+
+    </div>

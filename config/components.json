@@ -1,0 +1,50 @@
+[
+  
+    {
+        
+        "active" : false,
+        "name" : "newComponent",
+        "index" : 0,
+        "properties": {
+            "header" : {
+                "type" : "text",
+                "value" : "",
+                "default" : "default header text"
+            },
+            "someNumber": {
+                "type": "number",
+                "value": null,
+                "default": 1
+            },
+            "image" : {
+                "type" : "text",
+                "value" : "",
+                "default" : "http://panopticanalytics.com/wp-content/uploads/2014/05/placeholder-blue.png"
+            },
+            "things" : {
+                "type": "json",
+                "value": "",
+                "default": [{"header":"header 1"},{},{}]
+            }
+            
+        }
+    },
+    
+    {
+        "name" : "textblock",
+        "active" : false,
+        "index" : 0,
+        "properties": {
+            "header" : {
+                "type": "text",
+                "default" : "header of a text block"
+            },
+            "body": {
+                "type" : "textarea",
+                 "default" : "textarea of a text block"
+            }
+        }
+    }
+    
+]
+

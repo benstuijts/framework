@@ -1,0 +1,87 @@
+
+<footer class="footer">
+
+    <div class="container-fluid">
+        <div class="row footer-links">
+            <div class="col-md-offset-2 col-md-2">
+                <ul class="no-bullets">
+                    <h4>Informatie</h4>
+                </ul>
+            </div>
+            <div class="col-md-2">
+                <ul class="no-bullets">
+                    <h4>Interessant</h4>
+                    <li>
+                        
+                    </li>
+                </ul>
+            </div>
+            <div class="col-md-2">
+                
+                <ul class="no-bullets">
+                    <h4>Company</h4>
+                    <li>
+                        <a href="<%= data.company.url %>" target="_blank" title="website">
+                            Website    
+                        </a>
+                    </li>
+                    <li>
+                        <a href="<%= data.company.url %>/overons" target="_blank" title="over ons">
+                            Over ons    
+                        </a>
+                    </li>
+                    <li>
+                        <a href="<%= data.company.url %>/vacatures" target="_blank" title="vacatures">
+                            Vacatures    
+                        </a>
+                    </li>
+                    <li>
+                        <a href="<%= data.company.url %>/contact" target="_blank" title="contact">
+                            Contact    
+                        </a>
+                    </li>
+                    <li>
+                        <a href="<%= data.company.url %>/disclaimer" target="_blank" title="disclaimer">
+                            Disclaimer    
+                        </a>
+                    </li>
+                    <li>
+                        <a href="<%= data.company.url %>/privacy" target="_blank" title="privacy">
+                            Pricavy    
+                        </a>
+                    </li>
+                    
+                </ul>
+            </div>
+            <div class="col-md-2">
+                <ul class="no-bullets">
+                    <h4>Connect</h4>
+                    <li>
+                        <a href="<%= data.meta.social.facebook %>" target="_blank" title="facebook pagina <%= data.meta.name%>.">
+                            <i class="fa fa-facebook fa-fw"></i> Facebook    
+                        </a>
+                    </li>
+                    <li>
+                        <a href="<%= data.meta.social.twitter %>" target="_blank" title="twitter account">
+                            <i class="fa fa-twitter fa-fw"></i> Twitter    
+                        </a>
+                    </li>
+                    <li>
+                        <a href="<%= data.meta.social.google %>" target="_blank" title="googleplus pagina">
+                            <i class="fa fa-google fa-fw"></i> Google+    
+                        </a>
+                    </li>
+                    <br>
+                    <img class="img-responsive" src="https://ucarecdn.com/50b2f2cd-e7d7-4048-a179-b63a5bb5ef25/-/resize/320x/" title="<%= data.company.url %> is een Nederlands bedrijf" alt="<%= data.company.url %> is een Nederlands bedrijf">
+                </ul>
+        </div>
+    </div>
+    
+    <div class="container-fluid footer-bottom">
+        <p class="text-muted text-center">
+            <i class="fa fa-copyright"></i> Digital Markets 2016 
+            | <a href="">Over Digital Markets</a> 
+            | <a href="mailto:"><i class="fa fa-envelope"></i> Neem contact met ons op</a> 
+            | <a href="<%= data.company.url %>/vacatures">Vacatures</a></p>
+    </div>
+</footer>

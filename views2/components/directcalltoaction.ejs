@@ -1,0 +1,12 @@
+<% var directcalltoaction = data.directcalltoaction; %>
+
+<section class="direct-call-to-action" id="direct-call-to-action">
+    <div class="container">
+        <div class="col-lg-12 text-center">
+            <h2 class="section-heading"><%= directcalltoaction.header%></h2>
+            <p><%= directcalltoaction.body %></p>
+            <br><br>
+            <a class="btn btn-primary btn-lg" href="<%= directcalltoaction.href %>"><%= directcalltoaction.anchortext %></a>
+        </div>
+    </div>
+</section>

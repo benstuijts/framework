@@ -1,0 +1,115 @@
+<% include header.ejs %>
+<% include functions.ejs %>
+
+
+
+<div class="container">
+    
+    <section>
+        <% if(message) {
+            handleMessage(message)
+        } %>
+    </section>
+
+    <h1>Add a new Page</h1>
+    <form class="form" action="/admin/addpage" method="post">
+        <input type="hidden" name="token" value="<%= token %>">
+        <input type="hidden" name="date" value="<%- new Date().toDateString();%>">
+        
+        <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
+            <div class="panel panel-default">
+                <div class="panel-heading" role="tab" id="headingOne">
+                    <h4 class="panel-title">
+                        <a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                          Basisinformatie
+                        </a>
+                    </h4>
+                
+                </div>
+            <div id="collapseOne" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingOne">
+                <div class="panel-body">
+                    
+                    <% form.formGroup("text", "header", "Titel van de pagina", data.header) %>
+                    <% form.formGroup("text", "subheader", "Subtitel van de pagina", data.subheader) %>
+                    <% form.formGroup("text", "url", "Url (slug) van de pagina", data.url) %>
+                    <% form.formGroup("text", "image", "Image van de pagina", data.image) %>
+                    <% form.formGroup("text", "description", "Omschrijving van de pagina", data.description) %>
+                    <% form.formGroup("text", "keywords", "Keywords van de pagina", data.keywords) %>
+                    <% form.formGroup("text", "author", "Auteur van de pagina", data.author) %>
+                    <% form.formGroup("text", "robots", "follow, index?", data.robots) %>
+                </div>
+            </div>
+            
+        </div>
+    </div>
+
+    <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
+        <div class="panel panel-default">
+            <div class="panel-heading" role="tab" id="headingOne">
+                    <h4 class="panel-title">
+                        <a role="button" data-toggle="collapse" data-parent="#accordion" href="#content" aria-expanded="true" aria-controls="collapseOne">
+                          Content
+                        </a>
+                    </h4>
+            </div>
+            <div id="content" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingOne">
+                <div class="panel-body">
+                    <textarea name="body" id="ckeditor" class="form-control" rows="20"><%= data.body %></textarea>
+                </div>
+            </div>
+            
+        </div>
+    </div>
+    
+    <div class="quick-menu" style="position: fixed;bottom: 5%;right: 4%; z-index: 10;">
+            
+            <button type="submit" class="btn btn-primary" title="Save changes">
+                <span class="glyphicon glyphicon-floppy-disk"></span>
+            </button>
+
+            <a href="" class="btn btn-default" title="New Page">
+                <span class="glyphicon glyphicon-file"></span>
+            </a>
+            
+            <a href="/" class="btn btn-info" target="_blank" title="Landingspage">
+                <span class="glyphicon glyphicon-home"></span>
+            </a>
+            
+        </div>
+        
+        <input type="submit" class="btn btn-primary" value="Save">
+        
+    </form>
+</div>
+
+
+
+
+<script   src="https://code.jquery.com/jquery-2.2.4.min.js"   integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44="   crossorigin="anonymous"></script>
+
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" 
+        integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
+
+<script src="//cdn.ckeditor.com/4.5.9/standard/ckeditor.js"></script>
+<script>
+    // Replace the <textarea id="editor1"> with a CKEditor
+    // instance, using default configuration.
+    CKEDITOR.replace( 'ckeditor', {
+        height: Math.round(window.innerHeight * .6)
+    });
+</script>
+        
+        
+<% include footer.ejs %>
+
+<% function handleMessage(message) { %>
+    <% if(message.success!="") { %>
+        <div class="alert alert-success" role="alert"><%= message.success %></div>
+    <% } %>
+    <% if(message.info!="") { %>
+        <div class="alert alert-info" role="alert"><%= message.info %></div>
+    <% } %>
+    <% if(message.warning!="") { %>
+        <div class="alert alert-warning" role="alert"><%= message.warning %></div>
+    <% } %>
+<% } %>

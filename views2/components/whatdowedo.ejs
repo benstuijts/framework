@@ -1,0 +1,15 @@
+<% var whatdowedo = data.whatdowedo; %>
+<% var url = data.meta.url; %>
+
+<section class="what-do-we-do" id="what-do-we-do">
+    <article itemscope itemtype="http://schema.org/Article" class="container">
+        <div class="col-lg-12 text-center">
+            <h2 class="section-heading"><span itemprop="name"><%= whatdowedo.title %></span></h2>
+            <p itemprop="articleBody" class="section-subheading text-muted lead"><%= whatdowedo.missionStatement %></p>
+            <a href="<%= whatdowedo.callToAction.href %>" class="btn btn-primary btn-lg"><%= whatdowedo.callToAction.text %></a>
+        </div>
+        
+        <% include share %>
+        
+    </article>
+</section>

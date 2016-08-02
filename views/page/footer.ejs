@@ -1,0 +1,19 @@
+
+
+
+<script>
+    
+    console.log('script loading');
+    
+    window.onload = function() {
+
+        var im = document.getElementById("page.image").value;
+
+        if(im) {
+            document.getElementById("intro-header").style.background= "url('"+im+"') no-repeat center center";
+        }
+
+    };
+</script>
+</body>
+</html>

@@ -1,0 +1,21 @@
+<script>
+    window.onload = function() {
+        var im_contact;
+        
+        var im = document.getElementById("header.image").value;
+        if(document.getElementById("contact.image")) {
+            im_contact = document.getElementById("contact.image").value;
+        }
+        
+        if(im) {
+            document.getElementById("intro-header").style.background= "url('"+im+"') no-repeat center center";
+        }
+        if(im_contact) {
+            document.getElementById("contact").style.background= "url('"+im_contact+"') no-repeat center center";
+        }
+        
+
+    };
+</script>
+</body>
+</html>

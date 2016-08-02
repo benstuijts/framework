@@ -2,10 +2,11 @@
 const express       = require('express');
 const router        = express.Router();
 const fs            = require('fs');
+const path          = require('path');
 
 const dateformat    = require('dateformat');
 const jsonfile = require('jsonfile');
-const admin         = jsonfile.readFileSync('./config/admin.json');
+//const admin         = jsonfile.readFileSync('./config/admin.json');
 
 const utils = require('../own_modules/utils');
 
@@ -103,18 +104,26 @@ function handleMessage(req) {
     };
 }
 
-/*
-router.use(express.static('public'));
-router.use( bodyParser.json() );       // to support JSON-encoded bodies
-router.use(bodyParser.urlencoded({     // to support URL-encoded bodies
-    extended: true
-})); 
-*/
-
 module.exports = function(db) {
 
 /* Middleware*/
 router.use(flash());
+
+router.use(function(req, res, next){
+    console.log(req.originalUrl);
+    if(req.originalUrl === "/admin" || req.originalUrl === "/admin/") {
+        next();
+    } else {
+        
+        req.session.login = true;
+        
+        if(!req.session.login) {
+            res.redirect('/admin');
+        } else {
+            next();
+        }
+    }
+});
 
 router.use(function(req, res, next){
     const _URL = url.format({
@@ -135,6 +144,7 @@ router.use(function(req, res, next){
 router.use(utils.middleware.CRSF(token));
 
 const isLoggedIn = function(req, res, next) {
+    req.session.login = true;
         if(!req.session.login) {
             res.redirect('/admin');
         } else {
@@ -142,43 +152,38 @@ const isLoggedIn = function(req, res, next) {
         }
 };
 
-router.post('/login', function(req, res){
-    const username = req.body.username;
-    const password = req.body.password;
-    const code = req.body.identificationCode;
-    let flag_check_admin_user = false;
-    for(let i=0; i<admin.length; i++) {
-        if(admin[i].username == username && admin[i].password == password) {
-            flag_check_admin_user = true;
-        }
-    }
-    
-    if(flag_check_admin_user=== true && code === dateformat(new Date(), "ddmmyyyy")) {
-        req.session.login = {
-            username: username,
-            password: password,
-            ip: req.ip
-        };
-        
-        res.redirect('/admin/home');   
-    } else {
-        res.send('not logged in')
-    }
-});
+/* AUTHENTICATION */
+require("./admin/authentication")(router, token);
 
-router.get('/', function(req, res){
-    res.render("admin/login", {
-        token: token
-    });
-});
+/* EDITJSON */
+require("./admin/editjson")(router, token);
 
+/* HOME (MENU) */
 router.get('/home', isLoggedIn, function(req,res){
-    res.render('admin/home', {
-        username:  'username',
-        password:  'password' ,
-        ip: '127.0.0.1'
+    
+    fs.readdir('./config/pages', function(error,files){
+        
+        let pages = files.map((file)=>{
+            return path.basename(file, ".json");
+        });
+        
+        res.render('admin/home', {
+            username:  'username',
+            password:  'password' ,
+            ip: '127.0.0.1',
+            pages
+        });
+        
     });
+    
+    
 });
+
+/* EDITLANDINGSPAGE */
+require("./admin/editlandingspage")(router, token);
+
+/* ADD PAGE */
+require("./admin/addpage")(router, token);
 
 router.get('/json', isLoggedIn, function(req,res){
     res.locals.pretty = true;
@@ -190,7 +195,7 @@ router.get('/json', isLoggedIn, function(req,res){
     });
 });
 
-router.get('/backupfiles', function(req,res){
+router.get('/backupfiles', isLoggedIn, function(req,res){
     fs.readdir('./config/backup', function(error, files){
         
         res.render("admin/backupfiles", {
@@ -199,158 +204,6 @@ router.get('/backupfiles', function(req,res){
     });
     
 });
-
-router.get('/editlandingspage', function(req, res){
-    
-    let filename = (req.query.backupfile) ? "./config/backup/" + req.query.backupfile : "./config/default.json";
-    
-    utils.getJsonFile(filename, function(error, data){
-        if(error) {
-            res.end('error reading file');
-        }
-        res.locals.add({data: data});
-
-        res.render("admin/editlandingspage", {
-            username:  'username',
-            password:  'password' ,
-            ip: '127.0.0.1',
-            data: data,
-            message: handleMessage(req)
-        });
-    });
-});
-
-router.post('/editlandingspage', function(req, res){
-    
-    // req.body nog nabewerken!
-    let obj = req.body, objNew = {};
-    
-    let test = obj.array;
-    
-    //console.log(obj);
-    //req.flash('danger', 'Wijzigingen NIET opgeslagen.');
-    //res.redirect('/admin/editlandingspage');
-    //return;
-    
-    // opnemen in utils!
-    // Meer informatie op: http://stackoverflow.com/questions/7793811/convert-javascript-dot-notation-object-to-nested-object
-    
-function parseDotNotation( str, val, obj ){
-    var currentObj = obj,
-        keys = str.split("."), i, l = keys.length - 1, key;
-
-        for( i = 0; i < l; ++i ) {
-        key = keys[i];
-        currentObj[key] = currentObj[key] || {};
-        currentObj = currentObj[key];
-        }
-
-    currentObj[keys[i]] = val;
-    delete obj[str];
-    }
-
-    Object.expand = function( obj ) {
-
-        for( var key in obj ) {
-        parseDotNotation( key, obj[key], obj );
-        }
-        return obj;
-    };
-    
-    //console.log('-----------');
-    objNew = utils.expand(req.body);
-    //console.log(objNew);
-    //console.log('-----------');
-    
-    //console.log('-----------');
-    
-    //objNew = Object.expand(req.body);
-    
-    //console.log("TEST");
-    //console.log(req.body);
-    //console.log(Object.expand(test));
-    
-    /*
-    for(let prop in obj) {
-        
-        let level = prop.split("."), i;
-        
-        if(level.length == 1) {
-            if(!objNew[level[0]]) {
-                objNew[level[0]] = {};
-            }
-            objNew[level[0]] = obj[prop];
-        }
-        if(level.length ==2) {
-            if(!objNew[level[0]]) {
-                objNew[level[0]] = {};
-            }
-            if(!objNew[level[0]][level[1]]) {
-                objNew[level[0]][level[1]] = {};
-            }
-            objNew[level[0]][level[1]] = obj[prop];
-        }
-        if(level.length ==3) {
-            if(!objNew[level[0]]) {
-                objNew[level[0]] = {};
-            }
-            if(!objNew[level[0]][level[1]]) {
-                objNew[level[0]][level[1]] = {};
-            }
-            if(!objNew[level[0]][level[1]][level[2]]) {
-                objNew[level[0]][level[1]][level[2]] = {};
-            }
-            objNew[level[0]][level[1]][level[2]] = obj[prop];
-        }
-        if(level.length ==4) {
-            if(!objNew[level[0]]) {
-                objNew[level[0]] = {};
-            }
-            if(!objNew[level[0]][level[1]]) {
-                objNew[level[0]][level[1]] = {};
-            }
-            if(!objNew[level[0]][level[1]][level[2]][level[3]]) {
-                objNew[level[0]][level[1]][level[2]][level[3]] = {};
-            }
-            objNew[level[0]][level[1]][level[2]][level[3]] = obj[prop];
-        }
-    }
-    
-    */
-    
-    console.log(objNew.affiliate);
-    
-    let backupDate = dateformat(new Date(), "dd-mm-yyyy-hh.MM.ss");
-    let backupfile = './config/backup/' + backupDate + '.json';
-    console.log(backupfile);
-    //console.log(objNew);
-    
-    utils.saveJsonFile(backupfile, objNew, function(error){
-        if(error) {
-            req.flash('danger', 'Wijzigingen NIET opgeslagen.' + error);
-            res.redirect('/admin/editlandingspage');
-        } else {
-            utils.saveJsonFile('./config/default.json', objNew , function(error){
-                if(error) {
-                    req.flash('danger', 'Wijzigingen NIET opgeslagen.' + error);
-                    res.redirect('/admin/editlandingspage');
-                } else {
-                    req.flash('success', 'Wijzigingen opgeslagen.');
-                    res.redirect('/admin/editlandingspage');
-                }    
-            });    
-        }
-    });
-    
-    return;
-    
-});
-
-
-
-const renderDashboard = function(req, res) {
-    
-};
 
 const dashboard = function(req, res) {
     getImageList()
@@ -479,10 +332,7 @@ router.post('/dashboard/upload-file', upload.single('file'),function(req, res){
 });
 */
 
-router.get('/logout', function(req, res){
-    req.session.login = false;
-    res.redirect('/admin');
-});
+
 
 router.get('*', function(req,res){
     res.redirect('/admin');

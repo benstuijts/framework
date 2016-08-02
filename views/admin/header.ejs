@@ -4,12 +4,12 @@
     <meta http-equiv="content-type" content="text/html; charset=utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <meta name="author" content="<%= data.meta.author %>" />
-    <meta name="description" content="<%= data.meta.description %>">
-    <meta name="keywords" content="<%= data.meta.keywords %>">
-    <meta name="Robots" content="<%= data.meta.robots %>">
+    <meta name="author" content="DigitalMarkets" />
+    <meta name="description" content="">
+    <meta name="keywords" content="">
+    <meta name="Robots" content="nofollow, noindex>">
 
-    <title><%= data.meta.title %></title>
+    <title>Add Page | Admin Area</title>
     
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" 
         integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
@@ -43,12 +43,24 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-            <a class="navbar-brand" href="#"><i class="fa fa-user"></i> <%= username %> <small><%= ip %></small></a> 
+            <a class="navbar-brand" href="#">Admin</a> 
         </div>
             
             <ul class="nav navbar-nav">
                 <li>
+                    <a href="/admin/home">Menu</a>
+                </li>
+                <li>
                     <a href="/admin/backupfiles">Backup Files Landingspage</a>
+                </li>
+                <li>
+                    <a href="/admin/editjson">Edit Json</a>
+                </li>
+                <li>
+                    <a>
+                        <input type="hidden" name="picture" role="uploadcare-uploader"/>
+                    </a>
+                    
                 </li>
             </ul>
             <ul class="nav navbar-nav navbar-right">
@@ -58,4 +70,3 @@
             </ul>
         </div>
     </nav>
-<div class="container">

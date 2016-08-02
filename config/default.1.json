@@ -14,11 +14,11 @@
   },
   "meta": {
     "name": "landingspage framework version 2.0",
+    "author": "Digital Markets",
     "url": "https://framework-stuijts.c9users.io",
     "title": "nieuwe titel",
     "description": "",
     "robots": "index, follow",
-    "author" : "Digital Markets",
     "googleAnalytics": "",
     "social": {
       "facebook": "https://www.facebook.com/",
@@ -28,31 +28,37 @@
   },
   "aboveTheFold": {
     "image": "https://ucarecdn.com/32620a4e-45d6-46fd-af5d-bcd5cf05b5a7/-/progressive/yes/",
-    "h1": "Landingspage Framework version 1.0",
+    "h1": "VERSIE 2",
     "h3": "Easy & quick site builder, loadingtime < 2s",
     "callToAction": {
       "href": "url",
       "text": "Call to Action - click me"
     }
   },
+  "affiliate": {
+    "header": "header affiliate",
+    "leadparagraph": "leadparagraph",
+    "body": "body tekst",
+    "htmlcode": ""
+  },
   "quickselect": {
     "active": "on",
-    "links" : {
-        "0": {
-            "image" : "https://ucarecdn.com/7b60a25b-4cdc-429a-a4d4-d917870ebcb1/placeholder.jpg",
-            "anchortext": "Bekijk hier de beste aanbiedingen.",
-            "href" : "/url"
-        },
-        "1" : {
-            "image" : "https://ucarecdn.com/7b60a25b-4cdc-429a-a4d4-d917870ebcb1/placeholder.jpg",
-            "anchortext": "Bekijk hier de beste aanbiedingen.",
-            "href" : "/url"
-        },
-        "2" : {
-            "image" : "https://ucarecdn.com/7b60a25b-4cdc-429a-a4d4-d917870ebcb1/placeholder.jpg",
-            "anchortext": "Bekijk hier de beste aanbiedingen.",
-            "href" : "/url"
-        }
+    "links": {
+      "0": {
+        "image": "https://ucarecdn.com/7b60a25b-4cdc-429a-a4d4-d917870ebcb1/placeholder.jpg",
+        "anchortext": "Bekijk hier de beste aanbiedingen.",
+        "href": "/url"
+      },
+      "1": {
+        "image": "https://ucarecdn.com/7b60a25b-4cdc-429a-a4d4-d917870ebcb1/placeholder.jpg",
+        "anchortext": "Bekijk hier de beste aanbiedingen.",
+        "href": "/url"
+      },
+      "2": {
+        "image": "https://ucarecdn.com/7b60a25b-4cdc-429a-a4d4-d917870ebcb1/placeholder.jpg",
+        "anchortext": "Bekijk hier de beste aanbiedingen.",
+        "href": "/url"
+      }
     }
   },
   "whatdowedo": {
@@ -88,6 +94,7 @@
     }
   },
   "threedeals": {
+    "active": "on",
     "deals": {
       "0": {
         "header": "Header deal 1",
@@ -107,30 +114,14 @@
         "price": "tot € 150,00",
         "href": "url"
       }
-    },
-    "active": "on",
-    "deal1": {
-      "header": "Header deal 1",
-      "image": "http://www.hutterites.org/wp-content/uploads/2012/03/placeholder.jpg",
-      "price": "vanaf € 0,00"
-    },
-    "deal2": {
-      "header": "Header deal 2",
-      "image": "http://www.hutterites.org/wp-content/uploads/2012/03/placeholder.jpg",
-      "price": "€ 10,00 inclusief BTW"
-    },
-    "deal3": {
-      "header": "Header deal 3",
-      "image": "http://www.hutterites.org/wp-content/uploads/2012/03/placeholder.jpg",
-      "price": "tot € 150,00"
     }
   },
-  "shortstory" : {
+  "shortstory": {
     "active": "on",
     "header": "A great header",
-    "body" : "Some tekst for SEO.",
-    "anchortext" : "lees verder...",
-    "href" : "/url"
+    "body": "Some tekst for SEO.",
+    "anchortext": "lees verder...",
+    "href": "/url"
   },
   "directcalltoaction": {
     "active": "on",
@@ -140,9 +131,9 @@
     "href": "/url"
   },
   "longstory": {
-      "active" : "on",
-       "header" : "A great header of a long story",
-       "leadparagraph" : "lead paragraph",
-       "body" : "body text"
+    "active": "on",
+    "header": "A great header of a long story",
+    "leadparagraph": "lead paragraph",
+    "body": "body text"
   }
 }

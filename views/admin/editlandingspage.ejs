@@ -1,8 +1,12 @@
 <% include header.ejs %>
 <% include functions.ejs %>
 
+<div class="container">
+
 <section>
-    <% handleMessage(message) %>
+    <% if(message) {
+        handleMessage(message)
+    } %>
 </section>
 
 <section>
@@ -132,6 +136,10 @@
     <p>One Hour Setup</p>
     <i class="fa fa-clock-o fa-2x"></i> <span id="time">00:00:00</span>
 </div>
+
+
+</div> <!-- END CONTAINER -->
+
 <script>
     window.onload = function() {
         var timer = document.getElementById("time");
@@ -233,8 +241,5 @@
     <% } %>
     <% if(message.warning!="") { %>
         <div class="alert alert-warning" role="alert"><%= message.warning %></div>
-    <% } %>
-    <% if(message.danger!="") { %>
-        <div class="alert alert-danger" role="alert"><%= message.danger %></div>
     <% } %>
 <% } %>

@@ -68,13 +68,16 @@
             <hr>
             <br><br>
             <form class="form">
-                <a class="btn btn-primary btn-lg btn-block">Setup new Landing Page</a>
                 
-                <a class="btn btn-default btn-lg btn-block">Edit Landing Page</a>
+                <a class="btn btn-primary btn-lg btn-block" href="/admin/editlandingspage">Edit Landingspage</a>
                 
-                <a class="btn btn-default btn-lg btn-block">Add new Page</a>
+                <a class="btn btn-default btn-lg btn-block" href="/admin/editjson">Edit json file </a>
                 
-                <a class="btn btn-default btn-lg btn-block">Edit Page</a>
+                <a class="btn btn-default btn-lg btn-block" href="/admin">Edit CSS file </a>
+                
+                <a class="btn btn-default btn-lg btn-block" href="/admin/backupfiles">Restore earlier state of website</a>
+                
+                <a class="btn btn-default btn-lg btn-block" href="/admin/logout">Logout</a>
                 
                 
             </form>
@@ -87,6 +90,15 @@
                 </li>
             </ul>
             
+            <ul class="list-group">
+            <% for(var index in pages) {%>
+                <li class="list-group-item">
+                    <a href="/admin/addpage?pagename=<%=pages[index]%>">
+                        /<%=pages[index]%> <span class="pull-right"><%=pages[index].replace("-", " "); %></span>
+                    </a>
+                </li>
+            <% } %>
+            </ul>
             
             
         </div>

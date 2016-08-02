@@ -1,0 +1,21 @@
+<% var shortstory = data.shortstory %>
+
+<section id="our-short-story" class="our-short-story">
+    <article itemscope itemtype="http://schema.org/Article" class="container">
+        <div class="row">
+            <div class="col-lg-12 text-center">
+                <h2 itemprop="name"><%= shortstory.header %></h2>
+                <hr class="intro-divider">
+            </div>
+            <div class="col-lg-12" itemprop="articleBody">
+                <p class="lead">
+                    <%= shortstory.body %>
+                </p>
+            </div>
+        </div>
+        <% if(shortstory.href != "") { %>
+            <a href="<%= shortstory.href %>" class="btn btn-default pull-right"><%= shortstory.anchortext %></a>
+        <% } %> 
+        
+    </article>
+</section>

@@ -1,0 +1,82 @@
+<% include ../header.ejs %>
+<% include ../functions.ejs %>
+
+<div class="container">
+
+<section>
+    <% if(message) {
+        handle.message(message);
+    } %>
+</section>
+
+<pre>
+    <%- JSON.stringify(locals.components,null,4); %>
+</pre>
+<pre>
+    <%- JSON.stringify(locals.data,null,4); %>
+</pre>
+
+
+<% handle.renderAdminComponent2(locals.components[0]) %>
+
+<hr>
+
+<h3>Current Components of Website</h3>
+
+<% for(var i=0; i<data.components.length; i++ ){
+    var component = data.components[i];
+    handle.renderAdminComponent(component);
+}%>
+
+
+
+
+<h3>Available Components</h3>
+<% for(var index=0; index<components.length; index++) {
+    
+    
+        handle.renderAvailableComponent(components[index])
+    
+    
+    
+}%>
+    
+<div id="timer" style="position: fixed; z-index: 100; bottom: 8px; left: 16px; color: white; background: dodgerblue; padding: 10px">
+    <p>One Hour Setup</p>
+    <i class="fa fa-clock-o fa-2x"></i> <span id="time">00:00:00</span>
+</div>
+
+
+</div> <!-- END CONTAINER -->
+
+<script>
+    window.onload = function() {
+        var timer = document.getElementById("time");
+        var start = new Date();
+        setInterval(function(){
+            var t = getTime(start);
+            timer.innerHTML = ('0' + t.hours).slice(-2) + ":" + ('0' + t.minutes).slice(-2) + ":" + ('0' + t.seconds).slice(-2);
+        },1000);
+    };
+    function getTime(startTime){
+      var t =  Date.parse(new Date()) - Date.parse(startTime);
+      var seconds = Math.floor( (t/1000) % 60 );
+      var minutes = Math.floor( (t/1000/60) % 60 );
+      var hours = Math.floor( (t/(1000*60*60)) % 24 );
+      var days = Math.floor( t/(1000*60*60*24) );
+      return {
+        'total': t,
+        'days': days,
+        'hours': hours,
+        'minutes': minutes,
+        'seconds': seconds
+      };
+    }
+</script>
+
+<script   src="https://code.jquery.com/jquery-2.2.4.min.js"   integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44="   crossorigin="anonymous"></script>
+
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" 
+        integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
+<% include ../footer.ejs %>
+
