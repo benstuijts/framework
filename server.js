@@ -31,7 +31,7 @@ app.set('json spaces', 4);
   app.use(cookieParser());
   app.use(bodyParser.json());
   app.use(bodyParser.urlencoded({ extended: false }));
-  app.use(session({ secret: 'any string', saveUninitialized: true, resave: true, cookie: { maxAge: 120000 }}));
+  app.use(session({ secret: 'any string', saveUninitialized: true, resave: true, cookie: { maxAge: 3600000 }}));
   app.use(compression());
   app.use(express.static('./public', { maxAge: cacheClient }));
   app.use(function(req,res,next){
