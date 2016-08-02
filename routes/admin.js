@@ -110,12 +110,12 @@ module.exports = function(db) {
 router.use(flash());
 
 router.use(function(req, res, next){
-    console.log(req.originalUrl);
+    
     if(req.originalUrl === "/admin" || req.originalUrl === "/admin/") {
         next();
     } else {
         
-        req.session.login = true;
+        //req.session.login = true;
         
         if(!req.session.login) {
             res.redirect('/admin');
@@ -200,7 +200,7 @@ router.get('/backupfiles', isLoggedIn, function(req,res){
         
         res.render("admin/backupfiles", {
             files: files.reverse()
-        })
+        });
     });
     
 });

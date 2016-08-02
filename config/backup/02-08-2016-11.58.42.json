@@ -18,7 +18,7 @@
     "url": "https://framework-stuijts.c9users.io",
     "title": "nieuwe titel",
     "description": "",
-    "robots": "noindex, nofollow",
+    "robots": "index, follow",
     "googleAnalytics": "",
     "social": {
       "facebook": "https://www.facebook.com/",

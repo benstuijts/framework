@@ -1,4 +1,4 @@
-<% include header.ejs %>
+<% include ./templates/header.ejs %>
 <% include functions.ejs %>
 
 
@@ -85,10 +85,7 @@
 
 
 
-<script   src="https://code.jquery.com/jquery-2.2.4.min.js"   integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44="   crossorigin="anonymous"></script>
 
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" 
-        integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
 
 <script src="//cdn.ckeditor.com/4.5.9/standard/ckeditor.js"></script>
 <script>
@@ -100,7 +97,7 @@
 </script>
         
         
-<% include footer.ejs %>
+
 
 <% function handleMessage(message) { %>
     <% if(message.success!="") { %>
@@ -113,3 +110,5 @@
         <div class="alert alert-warning" role="alert"><%= message.warning %></div>
     <% } %>
 <% } %>
+
+<% include ./templates/footer.ejs %>
