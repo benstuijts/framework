@@ -1,8 +1,45 @@
 'use strict';
 const utils = require('../../own_modules/utils');
 const jsonfile = require('jsonfile');
+const fs = require('fs');
+const path = require('path');
 
 module.exports = function(router, token) {
+
+router.route('/backuppages')
+    
+    .get( (req,res) => {
+        fs.readdir('./config/pages', function(error,files){
+        
+            let pages = files.map((file)=>{
+                return path.basename(file, ".json");
+            });
+            
+            let html = '<h1>Pages</h1>';
+            for(let index=0; index<pages.length; index++) {
+                html += '<a href="/admin/editjsonpage/'+pages[index]+'">'+pages[index]+'</a>';
+            }
+            res.end(html);
+        });
+    });
+
+router.route('/editjsonpage/:filename?')
+
+    .get( (req,res) => {
+        let filename = (req.params.filename) ? req.params.filename : "default";
+        
+        utils.getJsonFile("./config/pages/" + filename + ".json", function(error, data){
+            if(error) {
+                res.end('error reading file');
+            }
+            res.render('admin/editjson', {
+                data: data,
+                filename: filename,
+                path: '/pages'
+            });
+        });
+    });
+
 
 router.route('/addpage')
     

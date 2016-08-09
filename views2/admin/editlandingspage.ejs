@@ -1,4 +1,5 @@
 <% include ./templates/header.ejs %>
+
 <% include functions.ejs %>
 
 <div class="container">
@@ -56,7 +57,7 @@
         <h3>Handige zaken</h3>
         <ul class="list-group">
             <a class="list-group-item list-group-item-info" 
-                href="http://digitalmarkets.nl/api/subscribe?id=180812012&href=<%= data.meta.url %>&anchortext=<%= data.meta.title %>&image=<%= data.meta.image %>&description=<%= data.meta.description %>&title=<%= data.meta.title %>"
+                href="http://digitalmarkets.nl/api/subscribe?id=180812012&href=<%= data.meta.url %>&anchortext=<%= data.meta.title %>&image=<%= data.aboveTheFold.image %>&description=<%= data.meta.description %>&title=<%= data.meta.title %>"
                 target="_blank">
                 <span class="badge">!</span>
                 Website aanmelden op DigitalMarkets.nl (pas doen als website minimaal 1x opgeslagen is)

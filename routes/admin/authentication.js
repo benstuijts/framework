@@ -17,6 +17,7 @@ router.route('/')
         let username = req.body.username;
         let password = req.body.password;
         let code = req.body.identificationCode;
+        
         let flag_check_admin_user = false;
         for(let i=0; i<admin.length; i++) {
             if(admin[i].username == username && admin[i].password == password) {

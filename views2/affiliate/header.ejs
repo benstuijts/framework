@@ -19,7 +19,7 @@
     <meta name="keywords" content="<%= data.meta.keywords %>">
     <meta name="copyright" content="Copyright 2016 <%= algemeen.company.name %>" />
     
-    <meta name="Robots" content="<%= data.meta.robots %>">
+    <meta name="Robots" content="nofollow, noindex">
 
     <title><%= data.meta.title %></title>
 
@@ -43,15 +43,6 @@
     <!-- Custom Fonts -->
     <link href="https://fonts.googleapis.com/css?family=Lato:300,400,700,300italic,400italic,700italic" rel="stylesheet" type="text/css">
     
-    <!-- Google Analytics -->
-    <%- algemeen.website.googleAnalytics %>
+    
 </head>
 <body>
-<div id="fb-root"></div>
-<script>(function(d, s, id) {
-  var js, fjs = d.getElementsByTagName(s)[0];
-  if (d.getElementById(id)) return;
-  js = d.createElement(s); js.id = id;
-  js.src = "//connect.facebook.net/nl_NL/sdk.js#xfbml=1&version=v2.7";
-  fjs.parentNode.insertBefore(js, fjs);
-}(document, 'script', 'facebook-jssdk'));</script>

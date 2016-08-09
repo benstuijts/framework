@@ -1,0 +1,28 @@
+{
+
+    "website": {
+        "name" :  "landingspage framework version 2.0",
+        "url": "https://framework-stuijts.c9users.io", 
+        "googleAnalytics": "",
+        "social": {
+          "facebook": "https://www.facebook.com/",
+          "google": "https://plus.google.com/",
+          "twitter": "https://twitter.com/"
+        }
+        
+    },
+    
+    "company" : {
+        "name": "Digital Markets",
+        "description": "omschrijving van het bedrijf",
+        "address": "Jan Hoogstadlaan 4, 3209 AM Hekelingen",
+        "url": "http://digitalmarkets.nl",
+        "kvk": "24308207",
+        "iban": "",
+        "btw": "NL1786.32.879.B01",
+        "contact": {
+          "email": "",
+          "telephone": ""
+        }
+    }
+}

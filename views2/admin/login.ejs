@@ -18,9 +18,9 @@
       <form class="form-signin" method="post" action="/admin">
         <h2 class="form-signin-heading">Please sign in</h2>
         <label for="inputEmail" class="sr-only">Email address</label>
-        <input type="email" name="username" id="inputEmail" class="form-control" placeholder="Username" value="b.stuijts@upcmail.nl" required autofocus>
+        <input type="email" name="username" id="inputEmail" class="form-control" placeholder="Username" required autofocus>
         <label for="inputPassword" class="sr-only">Password</label>
-        <input type="password" name="password" id="inputPassword" class="form-control" placeholder="Password" value="framework" required>
+        <input type="password" name="password" id="inputPassword" class="form-control" placeholder="Password" required>
         
         <label for="identificationCode" class="sr-only">Identification Code</label>
         <input type="password" name="identificationCode" id="identificationCode" class="form-control" placeholder="Personal Code" required>
@@ -28,8 +28,12 @@
         <input type="hidden" value="<%= token %>" name="token">
         
         <button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
+        <hr>
+        <a href="/" class="btn">WEBSITE</a>
       </form>
-
+        
+        
+    
     </div> <!-- /container -->
 </body>
 </html>

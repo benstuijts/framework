@@ -182,8 +182,8 @@ router.get('/home', isLoggedIn, function(req,res){
 /* EDITLANDINGSPAGE */
 require("./admin/editlandingspage")(router, token);
 
-/* ADD PAGE */
-require("./admin/addpage")(router, token);
+/* PAGES */
+require("./admin/pages")(router, token);
 
 router.get('/json', isLoggedIn, function(req,res){
     res.locals.pretty = true;

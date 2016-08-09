@@ -14,14 +14,20 @@ router.route('/editjson/:filename?')
                 res.end('error reading file');
             }
             res.render('admin/editjson', {
-                data: data
+                data: data,
+                filename: filename,
+                path: ''
             });
         });
     })
     
     .post(function(req,res){
         let obj = JSON.parse(req.body.json);
-        utils.saveJsonFile("./config/default.json", obj, function(error){
+        
+        let filename = (req.body.path == '') ? "./config/" + req.body.filename + ".json" : "./config" + req.body.path + "/" + req.body.filename + ".json";
+        
+    
+        utils.saveJsonFile(filename, obj, function(error){
             if(error)
                 res.end('ERROR: ' + error);
             else 
