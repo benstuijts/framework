@@ -167,39 +167,20 @@ router.route('/editlandingspage')
     .post(function(req,res){
         let obj = req.body, objNew = {};
         
-
-        function parseDotNotation( str, val, obj ){
-            var currentObj = obj,
-                keys = str.split("."), i, l = keys.length - 1, key;
-        
-                for( i = 0; i < l; ++i ) {
-                key = keys[i];
-                currentObj[key] = currentObj[key] || {};
-                currentObj = currentObj[key];
-                }
-        
-            currentObj[keys[i]] = val;
-            delete obj[str];
-            }
-
-        Object.expand = function( obj ) {
-            for( var key in obj ) {
-                parseDotNotation( key, obj[key], obj );
-            }
-            return obj;
-        };
-    
         objNew = utils.expand(req.body);
-
+        
+        let dataTobeSaved = objNew;
+            dataTobeSaved["components"] = Object.assign({}, objNew);
+        
         let backupDate = dateformat(new Date(), "dd-mm-yyyy-hh.MM.ss");
         let backupfile = './config/backup/' + backupDate + '.json';
 
-        utils.saveJsonFile(backupfile, objNew, function(error){
+        utils.saveJsonFile(backupfile, dataTobeSaved, function(error){
             if(error) {
                 req.flash('danger', 'Wijzigingen NIET opgeslagen.' + error);
                 res.redirect('/admin/editlandingspage');
             } else {
-                utils.saveJsonFile('./config/default.json', objNew , function(error){
+                utils.saveJsonFile('./config/default.json', dataTobeSaved , function(error){
                     if(error) {
                         req.flash('danger', 'Wijzigingen NIET opgeslagen.' + error);
                         res.redirect('/admin/editlandingspage');
